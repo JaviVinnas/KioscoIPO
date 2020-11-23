@@ -48,7 +48,7 @@ public class PantallaBienvenida implements Pantalla {
         hacerPedidoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //app.nuevaPantalla();
+                app.nuevaPantalla(new PantallaPedidos(app));
             }
         });
     }
