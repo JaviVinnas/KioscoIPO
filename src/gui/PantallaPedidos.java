@@ -12,10 +12,16 @@ public class PantallaPedidos implements Pantalla{
     private JLabel pasoLabel;
     private JLabel horaLabel;
     private JLabel telefonoLabel;
-    private App app;
+    private JTabbedPane tabbedPane1;
+    private JList list1;
+    private JButton button4;
+    private JButton button5;
+    private JTextArea textArea1;
+    private final App app;
 
     public PantallaPedidos(App app){
         this.app = app;
+        app.initComponentesPantalla(pasoLabel, telefonoLabel, horaLabel, 1);
     }
 
     @Override

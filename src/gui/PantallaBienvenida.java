@@ -45,12 +45,7 @@ public class PantallaBienvenida implements Pantalla {
         inglesButton.addActionListener(new BotonIdiomaClicked(Idioma.Ingles));
         espanolButton.addActionListener(new BotonIdiomaClicked(Idioma.Espanol));
         gallegoButton.addActionListener(new BotonIdiomaClicked(Idioma.Gallego));
-        hacerPedidoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                app.nuevaPantalla(new PantallaPedidos(app));
-            }
-        });
+        hacerPedidoButton.addActionListener(e -> app.nuevaPantalla(new PantallaPedidos(app)));
     }
 
     private void createUIComponents() {
