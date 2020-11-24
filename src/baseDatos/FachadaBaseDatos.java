@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class FachadaBaseDatos implements BaseDatos{
+public class FachadaBaseDatos implements BaseDatos {
 
     private final aplicacion.FachadaAplicacion fa;
     private Map<String, ItemCarta> carta;
@@ -24,8 +24,11 @@ public class FachadaBaseDatos implements BaseDatos{
     public String getHoraActual() {
         LocalDateTime ahora = LocalDateTime.now();
         //ARREGLAMOS EL FORMATO PARA QUE SEA N 4 DÍGITOS SIEMPRE
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("  HH:mm  ");
-        return ahora.format(formatter);
+        String hora = String.valueOf(ahora.getHour());
+        if (hora.length() == 1) hora = '0' + hora;
+        String minuto = String.valueOf(ahora.getMinute());
+        if (minuto.length() == 1) minuto = '0' + minuto;
+        return "  [ " + hora + ':' + minuto + " ]  ";
     }
 
     @Override
@@ -38,20 +41,20 @@ public class FachadaBaseDatos implements BaseDatos{
         return carta.get(nombre);
     }
 
-    public void addItemCartaAlMenu(ItemCarta item) throws ErrorMenu{
+    public void addItemCartaAlMenu(ItemCarta item) throws ErrorMenu {
         menuProvisional.addItem(item);
     }
 
-    public void quitarItemCartaAlMenu(ItemCarta item){
+    public void quitarItemCartaAlMenu(ItemCarta item) {
         menuProvisional.quitarItem(item);
     }
 
-    public void addPagableAlPedido(Pagable pagable){
+    public void addPagableAlPedido(Pagable pagable) {
         pedido.addItem(pagable);
     }
 
-    public void quitarPagableAlPedido(Pagable pagable, boolean todos){
-        pedido.quitarItem(pagable,todos);
+    public void quitarPagableAlPedido(Pagable pagable, boolean todos) {
+        pedido.quitarItem(pagable, todos);
     }
 
     @Override
@@ -59,7 +62,7 @@ public class FachadaBaseDatos implements BaseDatos{
         return pedido.getPrecio();
     }
 
-    private Map<String, ItemCarta> generarCarta(){
+    private Map<String, ItemCarta> generarCarta() {
         //variables
         List<Alergeno> alergenos;
         Map<String, ItemCarta> carta = new HashMap<>();
@@ -70,24 +73,24 @@ public class FachadaBaseDatos implements BaseDatos{
         //primeros platos del menu -> 3
         alergenos = new ArrayList<>();
         primerPlato = new PrimerPlato(4.0f, alergenos, "Sopa de pescado", "Sopa hecha con caldo de pescado");
-        carta.put(primerPlato.getNombre(),primerPlato);
+        carta.put(primerPlato.getNombre(), primerPlato);
         alergenos.add(Alergeno.HUEVOS);
         primerPlato = new PrimerPlato(3.5f, alergenos, "Pincho de tortilla", "Tortilla de patata hecha al momento");
         carta.put(primerPlato.getNombre(), primerPlato);
-        alergenos=new ArrayList<>();
+        alergenos = new ArrayList<>();
         alergenos.add(Alergeno.LACTOSA);
-        primerPlato=new PrimerPlato(4.5f, alergenos, "Tostas de pulpo con queso", "Receta tradicional con pulpo");
+        primerPlato = new PrimerPlato(4.5f, alergenos, "Tostas de pulpo con queso", "Receta tradicional con pulpo");
         carta.put(primerPlato.getNombre(), primerPlato);
         //segundos platos del menú -> 3
         alergenos = new ArrayList<>();
         segundoPlato = new SegundoPlato(5.0f, alergenos, "Pota de Berberechos", "Arroz caldoso con berberechos y una pizca de perejil. Una de nuestras epecialidades");
         carta.put(segundoPlato.getNombre(), segundoPlato);
         alergenos = new ArrayList<>();
-        segundoPlato = new SegundoPlato(4.75f, alergenos ,"Filetes con salsa de castañas", "Filetes de cerdo con salsa de castañas autóctonas");
+        segundoPlato = new SegundoPlato(4.75f, alergenos, "Filetes con salsa de castañas", "Filetes de cerdo con salsa de castañas autóctonas");
         carta.put(segundoPlato.getNombre(), segundoPlato);
         alergenos = new ArrayList<>();
         alergenos.add(Alergeno.TRIGO);
-        segundoPlato = new SegundoPlato(4.5f, alergenos ,"Albóndigas con champiñones", "Albóndigas caseras y champiñones de proximidad");
+        segundoPlato = new SegundoPlato(4.5f, alergenos, "Albóndigas con champiñones", "Albóndigas caseras y champiñones de proximidad");
         carta.put(segundoPlato.getNombre(), segundoPlato);
         //bebidas del menú -> 3
         alergenos = new ArrayList<>();
@@ -113,29 +116,29 @@ public class FachadaBaseDatos implements BaseDatos{
         postre = new Postre(2.0f, alergenos, "Brownie de chocolate", "Delicioso postre casero de chocolate y bizcocho");
         carta.put(postre.getNombre(), postre);
         //fuera de carta -> 6 platos (3 primeros y 3 segundos)
-        alergenos=new ArrayList<>();
+        alergenos = new ArrayList<>();
         alergenos.add(Alergeno.TRIGO);
         alergenos.add(Alergeno.LACTOSA);
-        primerPlato=new PrimerPlato(4.25f, alergenos, "Ensalada de pasta", "Plato con legumbres y pasta fresca aderezado con aceite de oliva");
+        primerPlato = new PrimerPlato(4.25f, alergenos, "Ensalada de pasta", "Plato con legumbres y pasta fresca aderezado con aceite de oliva");
         carta.put(primerPlato.getNombre(), primerPlato);
-        alergenos=new ArrayList<>();
-        primerPlato=new PrimerPlato(4.33f, alergenos, "Potaje de garbanzos", "Plato tradicional gallego");
+        alergenos = new ArrayList<>();
+        primerPlato = new PrimerPlato(4.33f, alergenos, "Potaje de garbanzos", "Plato tradicional gallego");
         carta.put(primerPlato.getNombre(), primerPlato);
-        alergenos=new ArrayList<>();
+        alergenos = new ArrayList<>();
         alergenos.add(Alergeno.LACTOSA);
-        primerPlato=new PrimerPlato(4.33f, alergenos, "Risotto de verduras", "Plato vegetariano con arroz");
+        primerPlato = new PrimerPlato(4.33f, alergenos, "Risotto de verduras", "Plato vegetariano con arroz");
         carta.put(primerPlato.getNombre(), primerPlato);
 
         alergenos = new ArrayList<>();
         alergenos.add(Alergeno.FRUTOS_SECOS);
         alergenos.add(Alergeno.TRIGO);
-        segundoPlato = new SegundoPlato(4.5f, alergenos ,"Macarrones al pesto", "Pasta fresca con salsa de pesto también casera");
+        segundoPlato = new SegundoPlato(4.5f, alergenos, "Macarrones al pesto", "Pasta fresca con salsa de pesto también casera");
         carta.put(segundoPlato.getNombre(), segundoPlato);
         alergenos = new ArrayList<>();
-        segundoPlato = new SegundoPlato(7.5f, alergenos ,"Rape con salsa verde", "Receta casera de pescado");
+        segundoPlato = new SegundoPlato(7.5f, alergenos, "Rape con salsa verde", "Receta casera de pescado");
         carta.put(segundoPlato.getNombre(), segundoPlato);
         alergenos = new ArrayList<>();
-        segundoPlato = new SegundoPlato(8.5f, alergenos ,"Cordero al horno", "Asies");
+        segundoPlato = new SegundoPlato(8.5f, alergenos, "Cordero al horno", "Asies");
         carta.put(segundoPlato.getNombre(), segundoPlato);
 
         return carta;
