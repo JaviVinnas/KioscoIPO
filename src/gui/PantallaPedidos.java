@@ -12,7 +12,7 @@ public class PantallaPedidos implements Pantalla{
     private JLabel pasoLabel;
     private JLabel horaLabel;
     private JLabel telefonoLabel;
-    private JTabbedPane panelConTablasMenuTabbedPane;
+    private JTabbedPane menuInfantilPanel;
     private JList listaItemsPedidoJList;
     private JButton borrarButton;
     private JButton borrarTodosButton;
@@ -35,6 +35,8 @@ public class PantallaPedidos implements Pantalla{
     private JList listaFueradelMenu;
     private JTextArea infoItemFueraDelMenu;
     private JButton añadirAlMenúButton1;
+    private JTextArea infoMenuInfantilTextArea;
+    private JButton añadirMenúAlPedidoButton1;
     private final App app;
 
     public PantallaPedidos(App app){
