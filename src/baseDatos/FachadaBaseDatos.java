@@ -3,6 +3,7 @@ package baseDatos;
 import aplicacion.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class FachadaBaseDatos implements BaseDatos{
@@ -22,7 +23,9 @@ public class FachadaBaseDatos implements BaseDatos{
     @Override
     public String getHoraActual() {
         LocalDateTime ahora = LocalDateTime.now();
-        return "[" + ahora.getHour() + ":" + ahora.getMinute() + "]";
+        //ARREGLAMOS EL FORMATO PARA QUE SEA N 4 DÍGITOS SIEMPRE
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("  HH:mm  ");
+        return ahora.format(formatter);
     }
 
     @Override
