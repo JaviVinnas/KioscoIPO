@@ -18,7 +18,7 @@ public class ComponentesConstantesPantalla {
     private final boolean botonVolverVisible;
     private final boolean botonCancelarVisible;
     private final boolean botonConfirmarVisible;
-    private final Pantalla siguientePantalla;
+    private final Pantallas siguientePantalla;
 
     public static class ComponentesConstantesPantallaBuilder{
         private final App app;
@@ -32,7 +32,7 @@ public class ComponentesConstantesPantalla {
         private boolean botonCancelarVisible;
         private JButton botonConfirmar;
         private boolean botonConfirmarVisible;
-        private Pantalla siguientePantalla;
+        private Pantallas siguientePantalla;
 
         public ComponentesConstantesPantallaBuilder(App app){
             this.app=app;
@@ -60,9 +60,10 @@ public class ComponentesConstantesPantalla {
             return this;
         }
 
-        public ComponentesConstantesPantallaBuilder setBotonConfirmar(JButton botonConfirmar, boolean botonConfirmarVisible, Pantalla siguientePantalla) {
+        public ComponentesConstantesPantallaBuilder setBotonConfirmar(JButton botonConfirmar, boolean botonConfirmarVisible, Pantallas siguientePantalla) {
             this.botonConfirmar = botonConfirmar;
             this.botonConfirmarVisible = botonConfirmarVisible;
+            this.siguientePantalla = siguientePantalla;
             return this;
         }
 
@@ -100,7 +101,7 @@ public class ComponentesConstantesPantalla {
         }
         if(this.hora!=null){
             hora.setText(app.getHoraActual());
-            app.cambiarTamText(telefono, 15.0f);
+            app.cambiarTamText(hora, 15.0f);
         }
         if(this.paso!=null && this.numPaso >= 0){
             String descripcion;
@@ -129,7 +130,7 @@ public class ComponentesConstantesPantalla {
             botonCancelar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    app.nuevaPantalla(new PantallaQuieresSalir(app));
+                    app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR);
                 }
             });
         }

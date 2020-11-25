@@ -13,17 +13,39 @@ import java.util.Stack;
 public class FachadaGUI implements GUI{
 
     private final App fa;
+    /*
     private final JFrame ventana;
     private final Stack<Pantalla> historialPantallas;
+    */
+    private Navigator navigator;
 
-    public void nuevaPantalla( Pantalla pantalla) {
+    public FachadaGUI(App fa) {
+        this.fa = fa;
+        /*
+        this.historialPantallas = new Stack<>();
+        this.ventana = new JFrame("Kiosco");
+        this.ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //para que la ventana aparezca en el centro
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.ventana.setLocation(dim.width/2-this.ventana.getSize().width/2, dim.height/2-this.ventana.getSize().height/2);
+        this.ventana.setResizable(false);
+
+         */
+    }
+
+    public void nuevaPantalla( Pantallas pantalla) {
+        this.navigator.nuevaPantalla(pantalla);
+        /*
         this.historialPantallas.push(pantalla);
         this.ventana.setContentPane(pantalla.getMainPanel());
         this.ventana.pack();
         this.ventana.setVisible(true);
+        */
     }
 
     public void volverPantalla() {
+        this.navigator.volverPantalla();
+        /*
         Pantalla pantallaActual = this.historialPantallas.pop();
         //si esta era la última pantalla
         if(this.historialPantallas.isEmpty()){
@@ -33,25 +55,23 @@ public class FachadaGUI implements GUI{
             //si no lo era asignamos a la ventana la siguiente pantalla en la pila
             this.ventana.setContentPane(this.historialPantallas.peek().getMainPanel());
         }
+
+         */
     }
 
-    public FachadaGUI(App fa) {
-        this.fa = fa;
-        this.historialPantallas = new Stack<>();
-        this.ventana = new JFrame("Kiosco");
-        this.ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //para que la ventana aparezca en el centro
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.ventana.setLocation(dim.width/2-this.ventana.getSize().width/2, dim.height/2-this.ventana.getSize().height/2);
-        this.ventana.setResizable(false);
+    @Override
+    public void volverPantallaPrincipal() {
+        this.navigator.volverPantallaPrincipal();
     }
+
 
     public void iniciarGui() {
-        this.fa.nuevaPantalla(new PantallaBienvenida(this.fa));
+        this.navigator = new Navigator(fa);
+        this.fa.nuevaPantalla(Pantallas.PANTALLA_BIENVENIDA);
     }
 
     public void mostrarAlerta(String mensaje) {
-        JOptionPane.showMessageDialog(ventana, mensaje);
+        JOptionPane.showMessageDialog(this.navigator.getVentana(), mensaje);
     }
 
     @Override

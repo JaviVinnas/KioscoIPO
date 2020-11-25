@@ -28,8 +28,6 @@ public class Navigator {
         this.pantallasDisponibles.put(Pantallas.PANTALLA_BIENVENIDA, new PantallaBienvenida(this.app));
         this.pantallasDisponibles.put(Pantallas.PANTALLA_PEDIDOS, new PantallaPedidos(this.app));
         this.pantallasDisponibles.put(Pantallas.PANTALLA_QUIERES_SALIR, new PantallaQuieresSalir(this.app));
-        //inicializamos
-        this.nuevaPantalla(Pantallas.PANTALLA_BIENVENIDA);
     }
 
     //mete el jpanel principal del tope de la pila como ventana actual iniciándolo
@@ -40,11 +38,8 @@ public class Navigator {
     }
 
     public void nuevaPantalla(Pantallas pantalla){
-        Pantalla nuevaPantalla = this.pantallasDisponibles.get(pantalla);
-        //la inicializamos
-        nuevaPantalla.init();
         //la metemos en el tope de la pila
-        this.historialPantallas.push(nuevaPantalla);
+        this.historialPantallas.push(this.pantallasDisponibles.get(pantalla));
         setPantalla();
         this.ventana.pack();
         this.ventana.setVisible(true);
@@ -60,12 +55,16 @@ public class Navigator {
             setPantalla();
         }
     }
-    public void volverAlInicio(){
-        Pantalla pantallaEnElTope = pantallasDisponibles.get(Pantallas.PANTALLA_BIENVENIDA);
+
+    public void volverPantallaPrincipal(){
         while (!this.historialPantallas.isEmpty()){
-            pantallaEnElTope = this.historialPantallas.pop();
+            this.historialPantallas.pop();
         }
-        this.historialPantallas.push(pantallaEnElTope);
-        setPantalla();
+        //estará vacía
+        nuevaPantalla(Pantallas.PANTALLA_BIENVENIDA);
+    }
+
+    public JFrame getVentana() {
+        return ventana;
     }
 }

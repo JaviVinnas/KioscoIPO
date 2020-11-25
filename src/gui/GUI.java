@@ -5,9 +5,10 @@ import javax.swing.*;
 
 public interface GUI {
     //cambia la pantalla actual en la que estemos y la añade al historial
-    void nuevaPantalla(Pantalla pantalla);
+    void nuevaPantalla(Pantallas pantalla);
     //volver pantalla
     void volverPantalla();
+    void volverPantallaPrincipal();
     //muestra un cuadro de dialogo emergente con un error
     void mostrarAlerta(String mensaje);
     //inicializa los componentes constantes a lo largo de la pantalla

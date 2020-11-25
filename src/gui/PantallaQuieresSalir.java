@@ -14,18 +14,9 @@ public class PantallaQuieresSalir implements Pantalla{
 
     public PantallaQuieresSalir(App app){
         this.app =  app;
-        siButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                app.volverPantalla();
-            }
-        });
-        noButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                app.nuevaPantalla(new PantallaBienvenida(app));
-            }
-        });
+
+        siButton.addActionListener(e -> app.volverPantallaPrincipal());
+        noButton.addActionListener(e -> app.volverPantalla());
     }
 
     @Override
@@ -36,5 +27,10 @@ public class PantallaQuieresSalir implements Pantalla{
     @Override
     public App getApp() {
         return app;
+    }
+
+    @Override
+    public void init() {
+
     }
 }

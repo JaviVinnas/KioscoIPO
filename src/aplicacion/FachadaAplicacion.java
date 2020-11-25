@@ -3,6 +3,7 @@ package aplicacion;
 import gui.ComponentesConstantesPantalla;
 import gui.FachadaGUI;
 import gui.Pantalla;
+import gui.Pantallas;
 
 import javax.swing.*;
 
@@ -12,13 +13,18 @@ public class FachadaAplicacion implements App {
     private final baseDatos.FachadaBaseDatos fbd;
 
     @Override
-    public void nuevaPantalla(Pantalla pantalla) {
+    public void nuevaPantalla(Pantallas pantalla) {
         this.fgui.nuevaPantalla(pantalla);
     }
 
     @Override
     public void volverPantalla() {
         this.fgui.volverPantalla();
+    }
+
+    @Override
+    public void volverPantallaPrincipal() {
+        this.fgui.volverPantallaPrincipal();
     }
 
     @Override

@@ -30,7 +30,7 @@ public class PantallaBienvenida implements Pantalla {
 
     public PantallaBienvenida(App app) {
         this.app = app;
-        app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setTelefono(telefonoLabel).setHora(horaLabel).build());
+        app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setTelefono(telefonoLabel).build());
 
         this.textoBienvenidaTextoMultiIdioma = new StringMultiIdioma("Bienvenido a Casa Pepe", "Welcome to Pepe's House", "Benvido a Casa Pepe", textoBienvenidaLabel, Idioma.Espanol);
         this.btnHacerPedidoTextoMultiIdioma = new StringMultiIdioma("Hacer mi pedido", "Place my order", "Facer o meu pedido", hacerPedidoButton, Idioma.Espanol);
@@ -45,7 +45,7 @@ public class PantallaBienvenida implements Pantalla {
         inglesButton.addActionListener(new BotonIdiomaClicked(Idioma.Ingles));
         espanolButton.addActionListener(new BotonIdiomaClicked(Idioma.Espanol));
         gallegoButton.addActionListener(new BotonIdiomaClicked(Idioma.Gallego));
-        hacerPedidoButton.addActionListener(e -> app.nuevaPantalla(new PantallaPedidos(app)));
+        hacerPedidoButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_PEDIDOS));
     }
 
     private void createUIComponents() {
@@ -78,5 +78,10 @@ public class PantallaBienvenida implements Pantalla {
     @Override
     public App getApp() {
         return app;
+    }
+
+    @Override
+    public void init() {
+        this.app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setHora(horaLabel).build());
     }
 }

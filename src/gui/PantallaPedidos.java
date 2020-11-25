@@ -26,25 +26,27 @@ public class PantallaPedidos implements Pantalla {
     private JList listaBebidasJList;
     private JList listaPostresJList;
     private JTextArea InfoElementoCartaTextArea;
-    private JButton añadirAlMenúButton;
+    private JButton anadirAlMenuButton;
     private JTextArea InfoMenuTextArea;
-    private JButton borrarMenúActualButton;
-    private JButton añadirMenúAlPedidoButton;
+    private JButton borrarMenuActualButton;
+    private JButton anadirMenuAlPedidoButton;
     private JLabel postresLabel;
     private JLabel bebidasLabel;
     private JLabel segundosLabel;
     private JLabel primerosLabel;
     private JList listaFueradelMenu;
     private JTextArea infoItemFueraDelMenu;
-    private JButton añadirAlMenúButton1;
+    private JButton anadirAlMenuButton1;
     private JTextArea infoMenuInfantilTextArea;
-    private JButton añadirMenúAlPedidoButton1;
+    private JButton anadirMenuAlPedidoButton1;
     private final App app;
 
     public PantallaPedidos(App app) {
         this.app = app;
-        app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setPaso(pasoLabel, 1).setTelefono(telefonoLabel).setHora(horaLabel).setBotonVolver(volverButton, true).setBotonCancelar(cancelarButton, true).setBotonConfirmar(confirmarButton, true, null).build());
-
+        app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setPaso(pasoLabel, 1).setTelefono(telefonoLabel).build());
+        //barra de navegación
+        volverButton.addActionListener(e -> app.volverPantalla());
+        cancelarButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR));
 
     }
 
@@ -56,5 +58,10 @@ public class PantallaPedidos implements Pantalla {
     @Override
     public App getApp() {
         return app;
+    }
+
+    @Override
+    public void init() {
+        app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setHora(horaLabel).build());
     }
 }

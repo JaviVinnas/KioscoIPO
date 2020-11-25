@@ -301,7 +301,7 @@
                             </constraints>
                             <properties/>
                           </component>
-                          <component id="1b28c" class="javax.swing.JButton" binding="añadirAlMenúButton" default-binding="true">
+                          <component id="1b28c" class="javax.swing.JButton" binding="anadirAlMenuButton">
                             <constraints>
                               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                             </constraints>
@@ -335,7 +335,7 @@
                             <properties/>
                             <border type="none"/>
                             <children>
-                              <component id="49266" class="javax.swing.JButton" binding="borrarMenúActualButton" default-binding="true">
+                              <component id="49266" class="javax.swing.JButton" binding="borrarMenuActualButton">
                                 <constraints>
                                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -343,7 +343,7 @@
                                   <text value="Borrar menú actual"/>
                                 </properties>
                               </component>
-                              <component id="ef3fe" class="javax.swing.JButton" binding="añadirMenúAlPedidoButton" default-binding="true">
+                              <component id="ef3fe" class="javax.swing.JButton" binding="anadirMenuAlPedidoButton">
                                 <constraints>
                                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -383,7 +383,7 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="bf520" class="javax.swing.JButton" binding="añadirMenúAlPedidoButton1" default-binding="true">
+                  <component id="bf520" class="javax.swing.JButton" binding="anadirMenuAlPedidoButton1">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -435,7 +435,7 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="c6f73" class="javax.swing.JButton" binding="añadirAlMenúButton1" default-binding="true">
+                  <component id="c6f73" class="javax.swing.JButton" binding="anadirAlMenuButton1">
                     <constraints>
                       <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
