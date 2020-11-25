@@ -1,5 +1,6 @@
 package aplicacion;
 
+import gui.ComponentesConstantesPantalla;
 import gui.FachadaGUI;
 import gui.Pantalla;
 
@@ -26,14 +27,10 @@ public class FachadaAplicacion implements App {
     }
 
     @Override
-    public void initComponentesPantalla(JLabel paso, JLabel telefono, JLabel hora, int numPaso) {
-        this.fgui.initComponentesPantalla(paso, telefono, hora, numPaso);
+    public void initComponentesPantalla(ComponentesConstantesPantalla componentes) {
+        this.fgui.initComponentesPantalla(componentes);
     }
 
-    @Override
-    public void initComponentesPantalla(JLabel telefono, JLabel hora) {
-        this.fgui.initComponentesPantalla(telefono, hora);
-    }
 
     @Override
     public JButton generarImagenJButton(String pathImagen, int alto, int ancho) {

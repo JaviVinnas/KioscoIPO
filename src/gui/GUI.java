@@ -11,9 +11,7 @@ public interface GUI {
     //muestra un cuadro de dialogo emergente con un error
     void mostrarAlerta(String mensaje);
     //inicializa los componentes constantes a lo largo de la pantalla
-    void initComponentesPantalla(JLabel paso, JLabel telefono, JLabel hora, int numPaso);
-    void initComponentesPantalla(JLabel telefono, JLabel hora);
-    void initComponentesPantalla(JLabel paso, JLabel telefono, JLabel hora, int numPaso, JButton botonVolver, JButton botonCancelar, JButton);
+    void initComponentesPantalla(ComponentesConstantesPantalla componentes);
     //devuelve un botón con la imagen de nombre pasado por parámetros incrustada en el
     JButton generarImagenJButton(String pathImagen, int alto, int ancho);
     //cambia el tamaño del texto de estos componentes de la GUI

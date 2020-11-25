@@ -55,12 +55,10 @@ public class FachadaGUI implements GUI{
     }
 
     @Override
-    public void initComponentesPantalla(JLabel telefono, JLabel hora) {
-        telefono.setText("Teléfono: " + fa.getTelefono());
-        hora.setText(fa.getHoraActual());
-        telefono.setFont(telefono.getFont().deriveFont(15.0f));
-        hora.setFont(hora.getFont().deriveFont(15.0f));
+    public void initComponentesPantalla(ComponentesConstantesPantalla componentes) {
+        componentes.construir();
     }
+
 
     @Override
     public JButton generarImagenJButton(String pathImagen, int alto, int ancho) {
@@ -86,29 +84,7 @@ public class FachadaGUI implements GUI{
         texto.setFont(texto.getFont().deriveFont(tamano));
     }
 
-    @Override
-    public void initComponentesPantalla(JLabel paso, JLabel telefono, JLabel hora, int numPaso) {
-        initComponentesPantalla(telefono,hora);
-        String descripcion;
-        switch (numPaso){
-            case 1:
-                descripcion = "configura tu pedido";
-                break;
-            case 2:
-                descripcion = "hora de recogida del pedido";
-                break;
-            case 3:
-                descripcion = "pago del pedido";
-                break;
-            case 4:
-                descripcion = "resumen del pedido";
-                break;
-            default:
-                descripcion = "ERROR";
-        }
-        paso.setText("Paso " + numPaso + " de 4: " + descripcion);
-        paso.setFont(paso.getFont().deriveFont(15.0f));
-    }
+
 
 
 

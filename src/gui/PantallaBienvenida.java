@@ -30,7 +30,7 @@ public class PantallaBienvenida implements Pantalla {
 
     public PantallaBienvenida(App app) {
         this.app = app;
-        app.initComponentesPantalla(telefonoLabel, horaLabel);
+        app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setTelefono(telefonoLabel).setHora(horaLabel).build());
 
         this.textoBienvenidaTextoMultiIdioma = new StringMultiIdioma("Bienvenido a Casa Pepe", "Welcome to Pepe's House", "Benvido a Casa Pepe", textoBienvenidaLabel, Idioma.Espanol);
         this.btnHacerPedidoTextoMultiIdioma = new StringMultiIdioma("Hacer mi pedido", "Place my order", "Facer o meu pedido", hacerPedidoButton, Idioma.Espanol);

@@ -1,20 +1,27 @@
 package gui;
 
+import aplicacion.App;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ComponentesConstantesPantalla {
-    private JLabel paso;
-    private int numPaso;
-    private JLabel telefono;
-    private JLabel hora;
-    private JButton botonVolver;
-    private JButton botonCancelar;
-    private JButton botonConfirmar;
-    private boolean botonVolverVisible;
-    private boolean botonCancelarVisible;
-    private boolean botonConfirmarVisible;
+    private final App app;
+    private final JLabel paso;
+    private final int numPaso;
+    private final JLabel telefono;
+    private final JLabel hora;
+    private final JButton botonVolver;
+    private final JButton botonCancelar;
+    private final JButton botonConfirmar;
+    private final boolean botonVolverVisible;
+    private final boolean botonCancelarVisible;
+    private final boolean botonConfirmarVisible;
+    private final Pantalla siguientePantalla;
 
     public static class ComponentesConstantesPantallaBuilder{
+        private final App app;
         private JLabel paso;
         private int numPaso;
         private JLabel telefono;
@@ -25,8 +32,11 @@ public class ComponentesConstantesPantalla {
         private boolean botonCancelarVisible;
         private JButton botonConfirmar;
         private boolean botonConfirmarVisible;
+        private Pantalla siguientePantalla;
 
-        public ComponentesConstantesPantallaBuilder(){}
+        public ComponentesConstantesPantallaBuilder(App app){
+            this.app=app;
+        }
 
         public ComponentesConstantesPantallaBuilder setPaso( JLabel paso, int numPaso){
             this.paso = paso;
@@ -50,7 +60,7 @@ public class ComponentesConstantesPantalla {
             return this;
         }
 
-        public ComponentesConstantesPantallaBuilder setBotonConfirmar(JButton botonConfirmar, boolean botonConfirmarVisible) {
+        public ComponentesConstantesPantallaBuilder setBotonConfirmar(JButton botonConfirmar, boolean botonConfirmarVisible, Pantalla siguientePantalla) {
             this.botonConfirmar = botonConfirmar;
             this.botonConfirmarVisible = botonConfirmarVisible;
             return this;
@@ -68,6 +78,7 @@ public class ComponentesConstantesPantalla {
     }
 
     private ComponentesConstantesPantalla(ComponentesConstantesPantallaBuilder builder){
+        this.app= builder.app;
         this.paso=builder.paso;
         this.numPaso= builder.numPaso;
         this.telefono= builder.telefono;
@@ -78,9 +89,67 @@ public class ComponentesConstantesPantalla {
         this.botonVolverVisible= builder.botonVolverVisible;
         this.botonCancelarVisible= builder.botonCancelarVisible;
         this.botonConfirmarVisible= builder.botonConfirmarVisible;
+        this.siguientePantalla= builder.siguientePantalla;
     }
 
     public void construir(){
         //todo: pasar la lógica de montar los componentes de la fachada GUI aquí
+        if(this.telefono!=null){
+            telefono.setText("Teléfono: " + app.getTelefono());
+            app.cambiarTamText(telefono, 15.0f);
+        }
+        if(this.hora!=null){
+            hora.setText(app.getHoraActual());
+            app.cambiarTamText(telefono, 15.0f);
+        }
+        if(this.paso!=null && this.numPaso >= 0){
+            String descripcion;
+            switch (this.numPaso){
+                case 1:
+                    descripcion = "configura tu pedido";
+                    break;
+                case 2:
+                    descripcion = "hora de recogida del pedido";
+                    break;
+                case 3:
+                    descripcion = "pago del pedido";
+                    break;
+                case 4:
+                    descripcion = "resumen del pedido";
+                    break;
+                default:
+                    descripcion = "ERROR";
+            }
+            paso.setText("Paso " + numPaso + " de 4: " + descripcion);
+            app.cambiarTamText(paso, 15.0f);
+        }
+        //barra de navegación
+        //botón de volver
+        if(botonCancelar != null){
+            botonCancelar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    app.nuevaPantalla(new PantallaQuieresSalir(app));
+                }
+            });
+        }
+        //botón de confirmar
+        if(botonConfirmar!=null){
+            botonCancelar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    app.nuevaPantalla(siguientePantalla);
+                }
+            });
+        }
+        if(botonVolver!=null){
+            botonVolver.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    app.volverPantalla();
+                }
+            });
+        }
+
     }
 }

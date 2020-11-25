@@ -3,8 +3,10 @@ package gui;
 import aplicacion.App;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PantallaPedidos implements Pantalla{
+public class PantallaPedidos implements Pantalla {
     private JPanel mainPanel;
     private JButton volverButton;
     private JButton confirmarButton;
@@ -39,9 +41,11 @@ public class PantallaPedidos implements Pantalla{
     private JButton añadirMenúAlPedidoButton1;
     private final App app;
 
-    public PantallaPedidos(App app){
+    public PantallaPedidos(App app) {
         this.app = app;
-        app.initComponentesPantalla(pasoLabel, telefonoLabel, horaLabel, 1);
+        app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setPaso(pasoLabel, 1).setTelefono(telefonoLabel).setHora(horaLabel).setBotonVolver(volverButton, true).setBotonCancelar(cancelarButton, true).setBotonConfirmar(confirmarButton, true, null).build());
+
+
     }
 
     @Override
