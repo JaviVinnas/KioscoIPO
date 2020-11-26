@@ -3,8 +3,6 @@ package gui;
 import aplicacion.App;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PantallaPedidos implements Pantalla {
     private JPanel mainPanel;
@@ -21,7 +19,7 @@ public class PantallaPedidos implements Pantalla {
     private JTextArea infoItemPedidoTextArea;
     private JPanel fueraDeCartaPanel;
     private JPanel dentroDeLaCartaPanel;
-    private JList listaPrimerosJList;
+    private JList<String> listaPrimerosJList;
     private JList listaSegundosJList;
     private JList listaBebidasJList;
     private JList listaPostresJList;
@@ -47,6 +45,14 @@ public class PantallaPedidos implements Pantalla {
         //barra de navegación
         volverButton.addActionListener(e -> app.volverPantalla());
         cancelarButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR));
+
+        //listas
+        ModeloListaStrings modeloLista = new ModeloListaStrings();
+        modeloLista.addElemento("Alcachofas");
+        modeloLista.addElemento("Berenjenas");
+        modeloLista.addElemento("Boniatos");
+        this.listaPrimerosJList.setModel(modeloLista);
+
 
     }
 

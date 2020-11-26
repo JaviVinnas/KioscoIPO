@@ -176,7 +176,11 @@
                             <children>
                               <component id="bbb35" class="javax.swing.JList" binding="listaPrimerosJList">
                                 <constraints/>
-                                <properties/>
+                                <properties>
+                                  <background color="-1"/>
+                                  <selectionBackground color="-9400934"/>
+                                  <selectionMode value="0"/>
+                                </properties>
                               </component>
                             </children>
                           </scrollpane>
