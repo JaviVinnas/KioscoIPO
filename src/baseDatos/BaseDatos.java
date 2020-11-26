@@ -4,6 +4,8 @@ import aplicacion.ErrorMenu;
 import aplicacion.ItemCarta;
 import aplicacion.Pagable;
 
+import java.util.List;
+
 public interface BaseDatos {
     //obtiene la hora actual del sistema en formato 24horas
     String getHoraActual();
@@ -21,4 +23,8 @@ public interface BaseDatos {
     void quitarPagableAlPedido(Pagable pagable, boolean todos);
     //nos dice el precio del pedido
     float getPrecioPedido();
+    //pone el menú preeliminar en blanco
+    void reiniciarMenuPreeliminar();
+    //pone el pedido en blanco
+    void reiniciarPedido();
 }

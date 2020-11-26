@@ -14,7 +14,6 @@ public class PantallaQuieresSalir implements Pantalla{
 
     public PantallaQuieresSalir(App app){
         this.app =  app;
-
         siButton.addActionListener(e -> app.volverPantallaPrincipal());
         noButton.addActionListener(e -> app.volverPantalla());
     }

@@ -13,26 +13,26 @@ public class PantallaPedidos implements Pantalla {
     private JLabel horaLabel;
     private JLabel telefonoLabel;
     private JTabbedPane menuInfantilPanel;
-    private JList listaItemsPedidoJList;
+    private JList<String> listaItemsPedidoJList;
     private JButton borrarButton;
     private JButton borrarTodosButton;
     private JTextArea infoItemPedidoTextArea;
     private JPanel fueraDeCartaPanel;
     private JPanel dentroDeLaCartaPanel;
     private JList<String> listaPrimerosJList;
-    private JList listaSegundosJList;
-    private JList listaBebidasJList;
-    private JList listaPostresJList;
-    private JTextArea InfoElementoCartaTextArea;
+    private JList<String> listaSegundosJList;
+    private JList<String> listaBebidasJList;
+    private JList<String> listaPostresJList;
+    private JTextArea infoElementoCartaTextArea;
     private JButton anadirAlMenuButton;
-    private JTextArea InfoMenuTextArea;
+    private JTextArea infoMenuTextArea;
     private JButton borrarMenuActualButton;
     private JButton anadirMenuAlPedidoButton;
     private JLabel postresLabel;
     private JLabel bebidasLabel;
     private JLabel segundosLabel;
     private JLabel primerosLabel;
-    private JList listaFueradelMenu;
+    private JList<String> listaFueradelMenu;
     private JTextArea infoItemFueraDelMenu;
     private JButton anadirAlMenuButton1;
     private JTextArea infoMenuInfantilTextArea;
@@ -47,11 +47,28 @@ public class PantallaPedidos implements Pantalla {
         cancelarButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR));
 
         //listas
-        ModeloListaStrings modeloLista = new ModeloListaStrings();
-        modeloLista.addElemento("Alcachofas");
-        modeloLista.addElemento("Berenjenas");
-        modeloLista.addElemento("Boniatos");
-        this.listaPrimerosJList.setModel(modeloLista);
+        ModeloListaStrings modeloListaPrimeros = new ModeloListaStrings();
+        modeloListaPrimeros.addElemento("Sopa de pescado");
+        modeloListaPrimeros.addElemento("Pincho de tortilla");
+        modeloListaPrimeros.addElemento("Tostas de pulpo con queso");
+        this.listaPrimerosJList.setModel(modeloListaPrimeros);
+        ModeloListaStrings modeloListaSegundos = new ModeloListaStrings();
+        modeloListaSegundos.addElemento("Pota de berberechos");
+        modeloListaSegundos.addElemento("Filetes con salsa de castañas");
+        modeloListaSegundos.addElemento("Albóndigas con champiñones");
+        this.listaSegundosJList.setModel(modeloListaSegundos);
+        ModeloListaStrings modeloListaBebidas = new ModeloListaStrings();
+        modeloListaBebidas.addElemento("Agua Mineral");
+        modeloListaBebidas.addElemento("Coca-Cola");
+        modeloListaBebidas.addElemento("Estrella Galicia");
+        this.listaBebidasJList.setModel(modeloListaBebidas);
+        ModeloListaStrings modeloListaPostres = new ModeloListaStrings();
+        modeloListaPostres.addElemento("Yogurt natural casero");
+        modeloListaPostres.addElemento("Mandarina");
+        modeloListaPostres.addElemento("Brownie de chocolate");
+        this.listaPostresJList.setModel(modeloListaPostres);
+
+
 
 
     }
@@ -69,5 +86,16 @@ public class PantallaPedidos implements Pantalla {
     @Override
     public void init() {
         app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setHora(horaLabel).build());
+        listaPrimerosJList.clearSelection();
+        listaSegundosJList.clearSelection();
+        listaBebidasJList.clearSelection();
+        listaPostresJList.clearSelection();
+        infoElementoCartaTextArea.setText("");
+        anadirAlMenuButton.setEnabled(false);
+        app.reiniciarMenuPreeliminar();
+        infoMenuTextArea.setText("");
+        borrarMenuActualButton.setEnabled(false);
+        anadirMenuAlPedidoButton.setEnabled(false);
+
     }
 }

@@ -93,6 +93,16 @@ public class FachadaAplicacion implements App {
         return fbd.getPrecioPedido();
     }
 
+    @Override
+    public void reiniciarMenuPreeliminar() {
+        fbd.reiniciarMenuPreeliminar();
+    }
+
+    @Override
+    public void reiniciarPedido() {
+        this.fbd.reiniciarPedido();
+    }
+
     public void iniciarGui() {
         this.fgui.iniciarGui();
     }

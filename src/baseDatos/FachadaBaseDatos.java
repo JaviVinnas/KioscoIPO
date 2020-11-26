@@ -61,6 +61,16 @@ public class FachadaBaseDatos implements BaseDatos {
         return pedido.getPrecio();
     }
 
+    @Override
+    public void reiniciarMenuPreeliminar() {
+        this.menuProvisional = new MenuNormal();
+    }
+
+    @Override
+    public void reiniciarPedido() {
+        this.pedido = new Pedido();
+    }
+
     private Map<String, ItemCarta> generarCarta() {
         //variables
         List<Alergeno> alergenos;
