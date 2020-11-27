@@ -1,8 +1,9 @@
 package gui;
 
-import aplicacion.App;
+import aplicacion.*;
 
 import javax.swing.*;
+import java.awt.event.*;
 
 public class PantallaPedidos implements Pantalla {
     private JPanel mainPanel;
@@ -37,7 +38,10 @@ public class PantallaPedidos implements Pantalla {
     private JButton anadirAlMenuButton1;
     private JTextArea infoMenuInfantilTextArea;
     private JButton anadirMenuAlPedidoButton1;
+    //variables fuera de la interfaz
     private final App app;
+    private ItemCarta itemCartaProvisional;
+    private Menu menuProvisional;
 
     public PantallaPedidos(App app) {
         this.app = app;
@@ -45,6 +49,11 @@ public class PantallaPedidos implements Pantalla {
         //barra de navegación
         volverButton.addActionListener(e -> app.volverPantalla());
         cancelarButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR));
+        //tamaños de cosas
+        app.cambiarTamText(primerosLabel, 20);
+        app.cambiarTamText(segundosLabel, 20);
+        app.cambiarTamText(postresLabel, 20);
+        app.cambiarTamText(bebidasLabel, 20);
 
         //listas
         ModeloListaStrings modeloListaPrimeros = new ModeloListaStrings();
@@ -69,9 +78,67 @@ public class PantallaPedidos implements Pantalla {
         this.listaPostresJList.setModel(modeloListaPostres);
 
 
-
-
+        listaPrimerosJList.addMouseListener(new ItemMenuListaClicked(listaPrimerosJList));
+        listaSegundosJList.addMouseListener(new ItemMenuListaClicked(listaSegundosJList));
+        listaBebidasJList.addMouseListener(new ItemMenuListaClicked(listaBebidasJList));
+        listaPostresJList.addMouseListener(new ItemMenuListaClicked(listaPostresJList));
+        anadirAlMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(menuProvisional == null || !(menuProvisional instanceof MenuNormal)){
+                    menuProvisional = new MenuNormal();
+                }
+                try {
+                    menuProvisional.addItem(itemCartaProvisional);
+                    infoMenuTextArea.setText(menuProvisional.toString());
+                    borrarMenuActualButton.setEnabled(true);
+                    if(menuProvisional.esValido()){
+                        anadirMenuAlPedidoButton.setEnabled(true);
+                    }
+                } catch (ErrorMenu errorMenu) {
+                    infoMenuTextArea.setText(menuProvisional.toString() + "\nNo se ha podido añadir " + itemCartaProvisional.getNombre() + " al menú: \n>" + errorMenu.getMessage());
+                    anadirMenuAlPedidoButton.setEnabled(false);
+                }
+            }
+        });
+        borrarMenuActualButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuProvisional = new MenuNormal();
+                infoMenuTextArea.setText("");
+                borrarMenuActualButton.setEnabled(false);
+            }
+        });
     }
+
+    private class ItemMenuListaClicked extends MouseAdapter{
+        private final JList<String> lista;
+        public ItemMenuListaClicked(JList<String> lista){
+            this.lista = lista;
+        }
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
+            String idItemMenu = lista.getModel().getElementAt(lista.getSelectedIndex());
+            itemCartaProvisional = app.getItemCartabyNombre(idItemMenu);
+            infoElementoCartaTextArea.setText(itemCartaProvisional.toString());
+            //des-seleccionamos cosas
+            if(listaPrimerosJList != lista){
+                listaPrimerosJList.clearSelection();
+            }
+            if(listaSegundosJList != lista){
+                listaSegundosJList.clearSelection();
+            }
+            if(listaBebidasJList != lista){
+                listaBebidasJList.clearSelection();
+            }
+            if(listaPostresJList != lista){
+                listaPostresJList.clearSelection();
+            }
+            anadirAlMenuButton.setEnabled(true);
+        }
+    }
+
 
     @Override
     public JPanel getMainPanel() {

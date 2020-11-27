@@ -22,19 +22,19 @@ public abstract class Menu implements Pagable {
     public float getPrecio() {
         float precio = 0.0f;
         for (PrimerPlato primero : primeros.keySet()) {
-            precio += primero.getPrecio();
+            precio += primero.getPrecio() * Float.parseFloat(primeros.get(primero).toString()) ;
         }
         for (SegundoPlato segundo : segundos.keySet()) {
-            precio += segundo.getPrecio();
+            precio += segundo.getPrecio() * Float.parseFloat(segundos.get(segundo).toString());
         }
         for (Postre postre : postres.keySet()) {
-            precio += postre.getPrecio();
+            precio += postre.getPrecio() * Float.parseFloat(postres.get(postre).toString());
         }
         for (Bebida bebida : bebidas.keySet()) {
-            precio += bebida.getPrecio();
+            precio += bebida.getPrecio() * Float.parseFloat(bebidas.get(bebida).toString());
         }
-        //ebaja del menu
-        precio *= .85f;
+        //rebaja del menu
+        //precio *= .85f;
         //redondeamos a dos decimales
         BigDecimal bd = new BigDecimal(Float.toString(precio));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
@@ -82,7 +82,7 @@ public abstract class Menu implements Pagable {
     //si la configuración de bebidas es correcta
     private boolean esValidoPostres(Map<Postre, Integer> postres) {
         //return postres.size() == 1;
-        return bebidas.values().stream().mapToInt(Integer::intValue).sum() <= 1;
+        return postres.values().stream().mapToInt(Integer::intValue).sum() <= 1;
     }
 
     //serán válidos los menús
@@ -91,6 +91,27 @@ public abstract class Menu implements Pagable {
         //tienen como mucho un postre
         //tienen entre una y tres bebidas
         return esValidoPlatos(primeros, segundos) && esValidoPostres(postres) && esValidoBebidas(bebidas);
+    }
+
+    private String porQueNoEsValido(){
+        StringBuilder out = new StringBuilder("Errores del pedido:\n");
+        boolean error = false;
+        if(!esValidoPlatos(primeros,segundos)){
+            error = true;
+            out.append("> El número de platos tiene que ser 1 o 2\n");
+        }
+        if(!esValidoBebidas(bebidas)){
+            error = true;
+            out.append("> El número de bebidas tiene que estar entre 1 y 3\n");
+        }
+        if(!esValidoPostres(postres)){
+            error = true;
+            out.append("> El número de postres tiene que ser 0 o 1\n");
+        }
+        if(!error){
+            out.append("> Pedido sin errores");
+        }
+        return out.toString();
     }
 
     //si la configuración de platos del mnú es correcta
@@ -137,7 +158,7 @@ public abstract class Menu implements Pagable {
     }
 
     //elimina un elemeno pagable del menú
-    public void quitarItem(ItemCarta item){
+    public void quitarItem(ItemCarta item) {
         if (item instanceof PrimerPlato) {
             if (primeros.containsKey(item)) {
                 if (primeros.get(item) == 1) {
@@ -199,47 +220,42 @@ public abstract class Menu implements Pagable {
 
     @Override
     public String toString() {
-        if (!esValido()) return "NO VALIDO";
-
         StringBuilder out = new StringBuilder();
         if (!primeros.isEmpty()) {
-            out.append("Primeros:");
+            out.append("---> Primeros:");
             for (Map.Entry<PrimerPlato, Integer> primerPlato : primeros.entrySet()) {
-                if (primerPlato.getValue() > 1) {
-                    out.append(' ').append(primerPlato.getValue());
-                }
+                out.append(' ').append(primerPlato.getValue());
                 out.append(' ').append(primerPlato.getKey().getNombre());
             }
             out.append("\n");
         }
         if (!segundos.isEmpty()) {
-            out.append("Segundos:");
+            out.append("---> Segundos:");
             for (Map.Entry<SegundoPlato, Integer> segundoPlato : segundos.entrySet()) {
-                if (segundoPlato.getValue() > 1) {
-                    out.append(' ').append(segundoPlato.getValue());
-                }
+                out.append(' ').append(segundoPlato.getValue());
                 out.append(' ').append(segundoPlato.getKey().getNombre());
             }
             out.append("\n");
         }
         if (!postres.isEmpty()) {
-            out.append("Postres: ");
+            out.append("---> Postres: ");
             for (Map.Entry<Postre, Integer> postre : postres.entrySet()) {
-                if (postre.getValue() > 1) {
-                    out.append(' ').append(postre.getValue());
-                }
+                out.append(' ').append(postre.getValue());
                 out.append(' ').append(postre.getKey().getNombre());
             }
             out.append("\n");
         }
         if (!bebidas.isEmpty()) {
-            out.append("Bebidas: ");
+            out.append("---> Bebidas: ");
             for (Map.Entry<Bebida, Integer> bebida : bebidas.entrySet()) {
-                if (bebida.getValue() > 1) {
-                    out.append(' ').append(bebida.getValue());
-                }
+                out.append(' ').append(bebida.getValue());
                 out.append(' ').append(bebida.getKey().getNombre());
             }
+            out.append("\n");
+        }
+        out.append("Precio total : ").append(getPrecio()).append('€');
+        if(!esValido()){
+            out.append('\n').append('\n').append(porQueNoEsValido());
         }
         return out.toString();
 

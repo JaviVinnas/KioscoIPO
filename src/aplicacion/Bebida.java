@@ -11,6 +11,6 @@ public final class Bebida extends ItemCarta {
 
     @Override
     public String toString() {
-        return super.toString() + "/Litro";
+        return super.toString() + "\n>Precio: " + getPrecio() + "€/Litro";
     }
 }

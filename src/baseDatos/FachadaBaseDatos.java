@@ -11,6 +11,7 @@ public class FachadaBaseDatos implements BaseDatos {
     private Map<String, ItemCarta> carta;
     private Pedido pedido;
     private Menu menuProvisional;
+    private ItemCarta itemCartaProvisional;
 
     public FachadaBaseDatos(aplicacion.FachadaAplicacion fa) {
         this.fa = fa;
@@ -92,7 +93,7 @@ public class FachadaBaseDatos implements BaseDatos {
         carta.put(primerPlato.getNombre(), primerPlato);
         //segundos platos del menú -> 3
         alergenos = new ArrayList<>();
-        segundoPlato = new SegundoPlato(5.0f, alergenos, "Pota de Berberechos", "Arroz caldoso con berberechos y una pizca de perejil. Una de nuestras epecialidades");
+        segundoPlato = new SegundoPlato(5.0f, alergenos, "Pota de berberechos", "Arroz caldoso con berberechos y una pizca de perejil. \nUna de nuestras epecialidades");
         carta.put(segundoPlato.getNombre(), segundoPlato);
         alergenos = new ArrayList<>();
         segundoPlato = new SegundoPlato(4.75f, alergenos, "Filetes con salsa de castañas", "Filetes de cerdo con salsa de castañas autóctonas");
@@ -118,7 +119,7 @@ public class FachadaBaseDatos implements BaseDatos {
         postre = new Postre(2.5f, alergenos, "Yogurt natural casero", "Hacemos nuestro propio yogurt");
         carta.put(postre.getNombre(), postre);
         alergenos = new ArrayList<>();
-        postre = new Postre(1.5f, alergenos, "Mandarina", "Las mandarinas es la fruta con más vitamina C que se conoce");
+        postre = new Postre(1.5f, alergenos, "Mandarina", "Las mandarinas es la fruta con \nmás vitamina C que se conoce");
         carta.put(postre.getNombre(), postre);
         alergenos = new ArrayList<>();
         alergenos.add(Alergeno.FRUTOS_SECOS);

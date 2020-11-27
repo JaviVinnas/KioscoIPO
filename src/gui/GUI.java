@@ -19,4 +19,5 @@ public interface GUI {
     void cambiarTamText(JButton boton, float tamano);
     void cambiarTamText(JLabel texto, float tamano);
 
+
 }

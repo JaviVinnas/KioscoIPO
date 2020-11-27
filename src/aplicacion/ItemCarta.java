@@ -57,14 +57,25 @@ public abstract class ItemCarta implements Pagable{
 
     @Override
     public String toString() {
-        StringBuilder out = new StringBuilder(nombre);
-        out.append('(');
-        for(Alergeno al : getAlergenos()){
-            out.append(al.toString()).append(' ');
+        StringBuilder out = new StringBuilder(nombre.toUpperCase());
+        out.append('\n');
+        if(!alergenos.isEmpty()){
+            out.append(">Alérgenos: ");
+            for(Alergeno al : getAlergenos()){
+                String[] alergenoPartes = al.toString().split("_");
+                for(String alergeno : alergenoPartes){
+                    out.append(alergeno.toLowerCase()).append(' ');
+                }
+                out.append(',');
+            }
+            //borramos la coma que sobra
+            out = new StringBuilder(out.substring(0, out.toString().length()-1));
+            out.append('\n');
         }
-        out = new StringBuilder(out.toString().replaceFirst("\\s++$", ""));
-        out.append("Precio: ").append(getPrecio()).append("€");
+        out.append(">Información: ").append(descripcion);
+        //precio se sobreescribe en los diferentes platos
         return out.toString();
+
     }
 
 
