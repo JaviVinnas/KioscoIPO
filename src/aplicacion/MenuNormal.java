@@ -6,6 +6,10 @@ public final class MenuNormal extends Menu{
         super();
     }
 
+    public MenuNormal(Menu menu){
+        super(menu);
+    }
+
     @Override
     public String toString() {
         int numPrimeros = getPrimeros().values().stream().mapToInt(Integer::intValue).sum();

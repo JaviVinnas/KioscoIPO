@@ -82,32 +82,37 @@ public class PantallaPedidos implements Pantalla {
         listaSegundosJList.addMouseListener(new ItemMenuListaClicked(listaSegundosJList));
         listaBebidasJList.addMouseListener(new ItemMenuListaClicked(listaBebidasJList));
         listaPostresJList.addMouseListener(new ItemMenuListaClicked(listaPostresJList));
-        anadirAlMenuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(menuProvisional == null || !(menuProvisional instanceof MenuNormal)){
-                    menuProvisional = new MenuNormal();
+        anadirAlMenuButton.addActionListener(e -> {
+            if(menuProvisional == null || !(menuProvisional instanceof MenuNormal)){
+                menuProvisional = new MenuNormal();
+            }
+            try {
+                menuProvisional.addItem(itemCartaProvisional);
+                infoMenuTextArea.setText(menuProvisional.toString());
+                borrarMenuActualButton.setEnabled(true);
+                if(menuProvisional.esValido()){
+                    anadirMenuAlPedidoButton.setEnabled(true);
                 }
-                try {
-                    menuProvisional.addItem(itemCartaProvisional);
-                    infoMenuTextArea.setText(menuProvisional.toString());
-                    borrarMenuActualButton.setEnabled(true);
-                    if(menuProvisional.esValido()){
-                        anadirMenuAlPedidoButton.setEnabled(true);
-                    }
-                } catch (ErrorMenu errorMenu) {
-                    infoMenuTextArea.setText(menuProvisional.toString() + "\nNo se ha podido añadir " + itemCartaProvisional.getNombre() + " al menú: \n>" + errorMenu.getMessage());
-                    anadirMenuAlPedidoButton.setEnabled(false);
-                }
+            } catch (ErrorMenu errorMenu) {
+                infoMenuTextArea.setText(menuProvisional.toString() + "\nNo se ha podido añadir " + itemCartaProvisional.getNombre() + " al menú: \n>" + errorMenu.getMessage());
+                anadirMenuAlPedidoButton.setEnabled(false);
             }
         });
-        borrarMenuActualButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                menuProvisional = new MenuNormal();
-                infoMenuTextArea.setText("");
-                borrarMenuActualButton.setEnabled(false);
-            }
+        borrarMenuActualButton.addActionListener(e -> {
+            menuProvisional = new MenuNormal();
+            infoMenuTextArea.setText("");
+            borrarMenuActualButton.setEnabled(false);
+        });
+        //lista del pedido
+
+
+
+        anadirMenuAlPedidoButton.addActionListener(e -> {
+            //añadimos el menú al pedido
+            app.addPagableAlPedido(menuProvisional);
+            //actualizamos el menú provisional con otra referencia de él mismo
+            menuProvisional = new MenuNormal(menuProvisional);
+            //actualizamos la lista de
         });
     }
 

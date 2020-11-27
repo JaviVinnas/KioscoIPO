@@ -17,6 +17,13 @@ public abstract class Menu implements Pagable {
         bebidas = new HashMap<>();
     }
 
+    public Menu( Menu menu){
+        primeros = new HashMap<>(menu.primeros);
+        segundos = new HashMap<>(menu.segundos);
+        bebidas = new HashMap<>(menu.bebidas);
+        postres = new HashMap<>(menu.postres);
+    }
+
 
     @Override
     public float getPrecio() {
@@ -63,6 +70,14 @@ public abstract class Menu implements Pagable {
 
     public Map<SegundoPlato, Integer> getSegundos() {
         return segundos;
+    }
+
+    public Map<Bebida, Integer> getBebidas() {
+        return bebidas;
+    }
+
+    public Map<Postre, Integer> getPostres() {
+        return postres;
     }
 
     private boolean esValidoPlatos(Map<PrimerPlato, Integer> primeros, Map<SegundoPlato, Integer> segundos) {
