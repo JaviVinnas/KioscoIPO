@@ -62,6 +62,7 @@ public class FachadaGUI implements GUI{
     @Override
     public void volverPantallaPrincipal() {
         this.navigator.volverPantallaPrincipal();
+        fa.reiniciarPedido();
     }
 
 

@@ -55,6 +55,7 @@ public class PantallaPedidos implements Pantalla {
         //barra de navegación
         volverButton.addActionListener(e -> app.volverPantalla());
         cancelarButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR));
+        confirmarButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_HORA_RECOGIDA));
         //tamaños de cosas
         app.cambiarTamText(primerosLabel, 20);
         app.cambiarTamText(segundosLabel, 20);
@@ -131,6 +132,8 @@ public class PantallaPedidos implements Pantalla {
             menuProvisional = new MenuNormal(menuProvisional);
             //actualizamos la lista de pedido para que muestre información relevante
             setListaPedido(listaItemsPedidoJList);
+            //activamos el botón de confirmar pedido
+            confirmarButton.setEnabled(true);
         });
 
         listaItemsPedidoJList.addMouseListener(new MouseAdapter() {
@@ -154,6 +157,9 @@ public class PantallaPedidos implements Pantalla {
             infoItemPedidoTextArea.setText("");
             borrarButton.setEnabled(false);
             borrarTodosButton.setEnabled(false);
+            if(app.getPedido().isEmpty()){
+                confirmarButton.setEnabled(false);
+            }
         });
         borrarTodosButton.addActionListener(e -> {
             String idItemPedido = listaItemsPedidoJList.getModel().getElementAt(listaItemsPedidoJList.getSelectedIndex());
@@ -164,7 +170,9 @@ public class PantallaPedidos implements Pantalla {
             infoItemPedidoTextArea.setText("");
             borrarButton.setEnabled(false);
             borrarTodosButton.setEnabled(false);
-
+            if(app.getPedido().isEmpty()){
+                confirmarButton.setEnabled(false);
+            }
         });
         anadirMenuAlPedidoButton1.addActionListener(new ActionListener() {
             @Override
@@ -175,6 +183,7 @@ public class PantallaPedidos implements Pantalla {
                 menuInfantil = new MenuInfantil(menuInfantil);
                 //actualizamos la lista de pedido para que muestre información relevante
                 setListaPedido(listaItemsPedidoJList);
+                confirmarButton.setEnabled(true);
             }
         });
 
@@ -203,8 +212,10 @@ public class PantallaPedidos implements Pantalla {
                 }
                 //actualizamos la lista de pedido para que muestre información relevante
                 setListaPedido(listaItemsPedidoJList);
+                confirmarButton.setEnabled(true);
             }
         });
+
     }
 
     //sincroniza el contenido del pedido con la lista que lo contiene
@@ -274,6 +285,8 @@ public class PantallaPedidos implements Pantalla {
         anadirMenuAlPedidoButton.setEnabled(false);
         borrarButton.setEnabled(false);
         borrarTodosButton.setEnabled(false);
+        setListaPedido(listaItemsPedidoJList);
+        confirmarButton.setEnabled(!app.getPedido().isEmpty());
 
     }
 }

@@ -58,6 +58,10 @@ public class Pedido {
         return false;
     }
 
+    public boolean isEmpty(){
+        return menus.isEmpty() && itemsCarta.isEmpty();
+    }
+
     public Pagable getItemPedidoByDescripcionCorta(String descripcionCorta){
         for(Map.Entry<Menu, Integer> menu : menus.entrySet()){
             if(descripcionCorta.equals(menu.getValue().toString() + " -> " + menu.getKey().getDescripcionCorta())){
@@ -83,6 +87,12 @@ public class Pedido {
         return precio;
     }
 
+    @Override
+    public String toString() {
+
+        StringBuilder out = new StringBuilder("Informacion del pedido:");
 
 
+        return null;
+    }
 }
