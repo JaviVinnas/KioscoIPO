@@ -62,6 +62,12 @@ public class PantallaPedidos implements Pantalla {
         app.cambiarTamText(postresLabel, 20);
         app.cambiarTamText(bebidasLabel, 20);
 
+        infoElementoCartaTextArea.setEditable(false);
+        infoMenuTextArea.setEditable(false);
+        infoItemPedidoTextArea.setEditable(false);
+        infoMenuInfantilTextArea.setEditable(false);
+        infoItemFueraDelMenu.setEditable(false);
+
         //Platos fuera del menú
         ModeloListaStrings modeloListaPlatosSueltos = new ModeloListaStrings();
         modeloListaPlatosSueltos.addElemento("Ensalada de pasta");
@@ -287,6 +293,8 @@ public class PantallaPedidos implements Pantalla {
         borrarTodosButton.setEnabled(false);
         setListaPedido(listaItemsPedidoJList);
         confirmarButton.setEnabled(!app.getPedido().isEmpty());
+        //
+
 
     }
 }

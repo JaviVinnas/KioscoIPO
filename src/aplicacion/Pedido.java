@@ -6,6 +6,7 @@ import java.util.Map;
 public class Pedido {
     Map<Menu, Integer> menus;
     Map<ItemCarta, Integer> itemsCarta;
+    Hora horaRecogida;
 
     public Pedido() {
         menus = new HashMap<>();
@@ -18,6 +19,10 @@ public class Pedido {
 
     public Map<ItemCarta, Integer> getItemsCarta() {
         return itemsCarta;
+    }
+
+    public void setHoraRecogida(Hora horaRecogida) {
+        this.horaRecogida = horaRecogida;
     }
 
     //añade un item al pedido
@@ -90,9 +95,17 @@ public class Pedido {
     @Override
     public String toString() {
 
-        StringBuilder out = new StringBuilder("Informacion del pedido:");
-
-
-        return null;
+        StringBuilder out = new StringBuilder("Informacion del pedido:\n");
+        for(Map.Entry<Menu, Integer> menu : menus.entrySet()){
+            out.append("* ").append(menu.getValue().toString()).append(" -> ").append(menu.getKey().getDescripcionCorta()).append('\n');
+        }
+        for(Map.Entry<ItemCarta, Integer> itemCarta : itemsCarta.entrySet()){
+            out.append("* ").append(itemCarta.getValue().toString()).append(" -> ").append(itemCarta.getKey().getDescripcionCorta()).append('\n');
+        }
+        if(horaRecogida != null){
+            out.append("Hora de recogida: ").append(horaRecogida.toString()).append('\n');
+        }
+        out.append("Precio => ").append(getPrecio()).append('€');
+        return out.toString();
     }
 }
