@@ -103,6 +103,11 @@ public class FachadaAplicacion implements App {
         this.fbd.reiniciarPedido();
     }
 
+    @Override
+    public Pedido getPedido() {
+        return fbd.getPedido();
+    }
+
     public void iniciarGui() {
         this.fgui.iniciarGui();
     }

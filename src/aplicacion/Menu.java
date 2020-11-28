@@ -40,8 +40,6 @@ public abstract class Menu implements Pagable {
         for (Bebida bebida : bebidas.keySet()) {
             precio += bebida.getPrecio() * Float.parseFloat(bebidas.get(bebida).toString());
         }
-        //rebaja del menu
-        //precio *= .85f;
         //redondeamos a dos decimales
         BigDecimal bd = new BigDecimal(Float.toString(precio));
         bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
@@ -273,6 +271,7 @@ public abstract class Menu implements Pagable {
             out.append('\n').append('\n').append(porQueNoEsValido());
         }
         return out.toString();
-
     }
+
+    public abstract String getDescripcionCorta();
 }

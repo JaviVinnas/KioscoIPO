@@ -304,7 +304,9 @@
                               </grid>
                             </constraints>
                             <properties>
+                              <lineWrap value="true"/>
                               <text value=""/>
+                              <wrapStyleWord value="true"/>
                             </properties>
                           </component>
                           <component id="1b28c" class="javax.swing.JButton" binding="anadirAlMenuButton">
@@ -482,7 +484,7 @@
             <children>
               <component id="be86c" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Precio"/>
@@ -499,7 +501,13 @@
                 <children>
                   <component id="6f912" class="javax.swing.JList" binding="listaItemsPedidoJList">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <font/>
+                      <layoutOrientation value="0"/>
+                    </properties>
+                    <clientProperties>
+                      <List.isFileList class="java.lang.Boolean" value="true"/>
+                    </clientProperties>
                   </component>
                 </children>
               </scrollpane>
@@ -531,11 +539,15 @@
               </grid>
               <component id="16cfa" class="javax.swing.JTextArea" binding="infoItemPedidoTextArea">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="50" height="50"/>
+                  <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="50"/>
+                    <preferred-size width="100" height="50"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <lineWrap value="true"/>
+                  <wrapStyleWord value="true"/>
+                </properties>
               </component>
               <component id="c4e93" class="javax.swing.JLabel">
                 <constraints>
@@ -545,9 +557,9 @@
                   <text value="Pedido"/>
                 </properties>
               </component>
-              <component id="1af16" class="javax.swing.JLabel">
+              <component id="1af16" class="javax.swing.JLabel" binding="precioPedidoJLabel">
                 <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Label"/>

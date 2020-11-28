@@ -3,6 +3,7 @@ package baseDatos;
 import aplicacion.ErrorMenu;
 import aplicacion.ItemCarta;
 import aplicacion.Pagable;
+import aplicacion.Pedido;
 
 import java.util.List;
 
@@ -27,4 +28,6 @@ public interface BaseDatos {
     void reiniciarMenuPreeliminar();
     //pone el pedido en blanco
     void reiniciarPedido();
+    //obtenemos el pedido
+    Pedido getPedido();
 }

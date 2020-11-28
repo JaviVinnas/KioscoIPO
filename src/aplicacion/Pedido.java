@@ -12,6 +12,14 @@ public class Pedido {
         itemsCarta = new HashMap<>();
     }
 
+    public Map<Menu, Integer> getMenus() {
+        return menus;
+    }
+
+    public Map<ItemCarta, Integer> getItemsCarta() {
+        return itemsCarta;
+    }
+
     //añade un item al pedido
     public void addItem(Pagable item) {
         if (item instanceof Menu) {
@@ -37,6 +45,31 @@ public class Pedido {
                 itemsCarta.put((ItemCarta) item, itemsCarta.get(item) - 1);
             }
         }
+    }
+
+    //dice si el pedido tiene o no un item pagable en concreto
+    public boolean contains(Pagable item){
+        if (item instanceof Menu) {
+            return menus.containsKey(item);
+        }
+        if (item instanceof ItemCarta) {
+            return itemsCarta.containsKey(item);
+        }
+        return false;
+    }
+
+    public Pagable getItemPedidoByDescripcionCorta(String descripcionCorta){
+        for(Map.Entry<Menu, Integer> menu : menus.entrySet()){
+            if(descripcionCorta.equals(menu.getValue().toString() + " -> " + menu.getKey().getDescripcionCorta())){
+                return menu.getKey();
+            }
+        }
+        for(Map.Entry<ItemCarta, Integer> itemCarta : itemsCarta.entrySet()){
+            if(descripcionCorta.equals(itemCarta.getValue().toString() + " -> " + itemCarta.getKey().getDescripcionCorta())){
+                return itemCarta.getKey();
+            }
+        }
+        return null;
     }
 
     public float getPrecio(){

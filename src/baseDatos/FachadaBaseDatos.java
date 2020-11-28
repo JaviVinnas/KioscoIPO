@@ -72,6 +72,11 @@ public class FachadaBaseDatos implements BaseDatos {
         this.pedido = new Pedido();
     }
 
+    @Override
+    public Pedido getPedido() {
+        return pedido;
+    }
+
     private Map<String, ItemCarta> generarCarta() {
         //variables
         List<Alergeno> alergenos;

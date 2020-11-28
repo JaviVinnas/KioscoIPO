@@ -3,6 +3,11 @@ package aplicacion;
 import java.util.ArrayList;
 
 public final class MenuInfantil extends Menu {
+
+    public MenuInfantil(MenuInfantil menu){
+        super(menu);
+    }
+
     public MenuInfantil() {
         super();
         try {
@@ -32,6 +37,11 @@ public final class MenuInfantil extends Menu {
 
     @Override
     public String toString() {
-        return "Menu infantil: " + super.toString();
+        return "Menu infantil: \n" + super.toString();
+    }
+
+    @Override
+    public String getDescripcionCorta() {
+        return "Menú infantil";
     }
 }

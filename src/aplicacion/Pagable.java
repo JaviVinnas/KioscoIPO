@@ -12,6 +12,8 @@ public interface Pagable {
 
     float getPrecio();
 
+    String getDescripcionCorta();
+
     //necesitamos un tostring fuerte
     String toString();
 }

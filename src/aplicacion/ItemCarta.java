@@ -21,6 +21,13 @@ public abstract class ItemCarta implements Pagable{
         this.descripcion = descripcion;
     }
 
+    public ItemCarta( ItemCarta copy){
+        this.precio = copy.precio;
+        this.alergenos = new HashSet<>(copy.alergenos);
+        this.nombre = copy.nombre;
+        this.descripcion = copy.descripcion;
+    }
+
     @Override
     public float getPrecio() {
         BigDecimal bd = new BigDecimal(Float.toString(precio));
@@ -78,5 +85,8 @@ public abstract class ItemCarta implements Pagable{
 
     }
 
-
+    @Override
+    public String getDescripcionCorta() {
+        return nombre;
+    }
 }
