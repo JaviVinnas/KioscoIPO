@@ -105,7 +105,7 @@ public class Pedido {
         if(horaRecogida != null){
             out.append("Hora de recogida: ").append(horaRecogida.toString()).append('\n');
         }
-        out.append("Precio => ").append(getPrecio()).append('€');
+        out.append("Precio total => ").append(getPrecio()).append('€');
         return out.toString();
     }
 }

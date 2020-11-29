@@ -143,7 +143,7 @@ public class FachadaBaseDatos implements BaseDatos {
         alergenos.add(Alergeno.LACTOSA);
         primerPlato = new PrimerPlato(4.33f, alergenos, "Risotto de verduras", "Plato vegetariano con arroz");
         carta.put(primerPlato.getNombre(), primerPlato);
-
+        //(los segundos)
         alergenos = new ArrayList<>();
         alergenos.add(Alergeno.FRUTOS_SECOS);
         alergenos.add(Alergeno.TRIGO);
@@ -155,6 +155,37 @@ public class FachadaBaseDatos implements BaseDatos {
         alergenos = new ArrayList<>();
         segundoPlato = new SegundoPlato(8.5f, alergenos, "Cordero al horno", "Asies");
         carta.put(segundoPlato.getNombre(), segundoPlato);
+
+        //los extras de la carta
+        alergenos = new ArrayList<>();
+        primerPlato = new PrimerPlato(4.25f, alergenos, "Crema de calabaza con jamón", "Deliciosa crema de clabaza con picatostes y virutas de jamón ibérico");
+        carta.put(primerPlato.getNombre(), primerPlato);
+        alergenos = new ArrayList<>();
+        alergenos.add(Alergeno.HUEVOS);
+        alergenos.add(Alergeno.LACTOSA);
+        primerPlato = new PrimerPlato(3.0f, alergenos, "Huevos rellenos de atún", "Huevos rellenos con atún y mayonesa");
+        carta.put(primerPlato.getNombre(), primerPlato);
+        //risotto de verduras
+        alergenos = new ArrayList<>();
+        segundoPlato = new SegundoPlato(4.5f, alergenos, "Pisto al vapor con filetes de cerdo", "Receta baja en calorías y muy sabrosa");
+        carta.put(segundoPlato.getNombre(), segundoPlato);
+        alergenos = new ArrayList<>();
+        segundoPlato = new SegundoPlato(6.0f, alergenos, "Salmón a la plancha con puré de patata", "Salmón recién traido de la pescadería");
+        carta.put(segundoPlato.getNombre(), segundoPlato);
+        //macarrones al pesto
+        alergenos = new ArrayList<>();
+        bebida = new Bebida(.60f, alergenos, "Aquarius de naranja", "Bebída isotónica baja en calorías");
+        carta.put(bebida.getNombre(), bebida);
+        //agua
+        //estrella galicia
+        alergenos = new ArrayList<>();
+        postre = new Postre(3.5f, alergenos, "Macedonia de frutas", "Mezcla de fruta fresca de temporada");
+        carta.put(postre.getNombre(), postre);
+        alergenos = new ArrayList<>();
+        postre = new Postre(4.0f, alergenos, "Tarta de manzana", "Una receta que ha pasado de generación en generación entre los fundadores de Casa Pepe");
+        carta.put(postre.getNombre(), postre);
+        //yogurt natural
+
 
         return carta;
     }

@@ -121,6 +121,7 @@
             <properties>
               <editable value="false"/>
               <lineWrap value="true"/>
+              <text value=""/>
               <wrapStyleWord value="true"/>
             </properties>
           </component>

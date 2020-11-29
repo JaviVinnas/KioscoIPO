@@ -29,6 +29,10 @@ public class Navigator {
         this.pantallasDisponibles.put(Pantallas.PANTALLA_PEDIDOS, new PantallaPedidos(this.app));
         this.pantallasDisponibles.put(Pantallas.PANTALLA_QUIERES_SALIR, new PantallaQuieresSalir(this.app));
         this.pantallasDisponibles.put(Pantallas.PANTALLA_HORA_RECOGIDA, new PantallaHoraRecogida(this.app));
+        this.pantallasDisponibles.put(Pantallas.PANTALLA_ACERCA_TARJETA, new PantallaAcercaTarjeta(this.app));
+        this.pantallasDisponibles.put(Pantallas.PANTALLA_INTRODUCE_PIN, new PantallaIntroducePin(this.app));
+        this.pantallasDisponibles.put(Pantallas.PANTALLA_RESUMEN_PEDIDO, new PantallaResumenPedido(this.app));
+        this.pantallasDisponibles.put(Pantallas.PANTALLA_MENU_MANANA, new PantallaMenuDiaSiguiente(this.app));
     }
 
     //mete el jpanel principal del tope de la pila como ventana actual iniciándolo

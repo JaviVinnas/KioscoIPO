@@ -87,6 +87,6 @@ public abstract class ItemCarta implements Pagable{
 
     @Override
     public String getDescripcionCorta() {
-        return nombre;
+        return nombre + ' ' + getPrecio() + '€';
     }
 }

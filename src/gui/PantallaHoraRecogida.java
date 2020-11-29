@@ -5,8 +5,6 @@ import aplicacion.Hora;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class PantallaHoraRecogida implements Pantalla {
     private JPanel mainPanel;
@@ -44,6 +42,10 @@ public class PantallaHoraRecogida implements Pantalla {
                     horaProvisional.setMinuto((Integer.parseInt(item)));
                     errorHoraTextArea.setText(horaProvisional.toString());
                     String motivoErrorHora = horaProvisional.porQueNoEsValido();
+                    //todo arreglar esto para ponerlo bien mañana con su hora
+                    errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
+                    confirmarButton.setEnabled(true);
+                    /*
                     if (motivoErrorHora == null) {
                         errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
                         confirmarButton.setEnabled(true);
@@ -51,6 +53,8 @@ public class PantallaHoraRecogida implements Pantalla {
                         errorHoraTextArea.setText(motivoErrorHora);
                         confirmarButton.setEnabled(false);
                     }
+
+                     */
                 } catch (NullPointerException ignore) {
                     ignore.printStackTrace();
                 }
@@ -67,6 +71,10 @@ public class PantallaHoraRecogida implements Pantalla {
                     System.out.println(horaProvisional);
                     errorHoraTextArea.setText(horaProvisional.toString());
                     String motivoErrorHora = horaProvisional.porQueNoEsValido();
+                    //todo arreglar esto para ponerlo bien mañana con su hora
+                    errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
+                    confirmarButton.setEnabled(true);
+                    /*
                     if (motivoErrorHora == null) {
                         errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
                         confirmarButton.setEnabled(true);
@@ -74,6 +82,8 @@ public class PantallaHoraRecogida implements Pantalla {
                         errorHoraTextArea.setText(motivoErrorHora);
                         confirmarButton.setEnabled(false);
                     }
+
+                     */
                 } catch (NullPointerException ignore) {
                     ignore.printStackTrace();
                 }
@@ -81,8 +91,7 @@ public class PantallaHoraRecogida implements Pantalla {
         });
         confirmarButton.addActionListener(e -> {
             app.getPedido().setHoraRecogida(horaProvisional);
-            infoPedidoTextArea.setText(app.getPedido().toString());
-            //app.nuevaPantalla();
+            app.nuevaPantalla(Pantallas.PANTALLA_ACERCA_TARJETA);
         });
     }
 
@@ -99,11 +108,7 @@ public class PantallaHoraRecogida implements Pantalla {
     @Override
     public void init() {
         app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setHora(horaLabel).build());
-        this.horaProvisional = new Hora();
         infoPedidoTextArea.setText(app.getPedido().toString());
-        confirmarButton.setEnabled(false);
-
-
     }
 
 }
