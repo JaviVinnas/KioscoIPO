@@ -42,6 +42,7 @@ public class PantallaIntroducePin implements Pantalla {
             app.empezarCuentaAtras();
         });
         confirmarButton.addActionListener(e -> {
+            app.getPedido().generarId();
             app.nuevaPantalla(Pantallas.PANTALLA_RESUMEN_PEDIDO);
             app.empezarCuentaAtras();
         });

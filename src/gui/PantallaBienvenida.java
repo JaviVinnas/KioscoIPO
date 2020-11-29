@@ -1,6 +1,7 @@
 package gui;
 
 import aplicacion.App;
+import aplicacion.Hora;
 import aplicacion.Idioma;
 import aplicacion.StringMultiIdioma;
 
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class PantallaBienvenida implements Pantalla {
     private JLabel telefonoLabel;
@@ -23,6 +25,7 @@ public class PantallaBienvenida implements Pantalla {
     private JButton hacerPedidoButton;
     private JLabel textoBienvenidaLabel;
     private JLabel seleccionIdiomaLabel;
+    private JLabel errorHorarioLabel;
     private final App app;
     private final StringMultiIdioma textoBienvenidaTextoMultiIdioma;
     private final StringMultiIdioma btnHacerPedidoTextoMultiIdioma;
@@ -83,5 +86,12 @@ public class PantallaBienvenida implements Pantalla {
     @Override
     public void init() {
         this.app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setHora(horaLabel).build());
+        if (LocalDateTime.now().getHour() + 1 > 22) {
+            errorHorarioLabel.setText("Ya no se aceptan pedidos a partir de la hora actual. Vuelva otro día");
+            hacerPedidoButton.setEnabled(false);
+        }else {
+            errorHorarioLabel.setText("");
+        }
+
     }
 }

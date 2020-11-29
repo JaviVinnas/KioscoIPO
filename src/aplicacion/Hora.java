@@ -56,7 +56,7 @@ public class Hora {
     }
 
     public String porQueNoEsValido() {
-        //horas válidas: 12 -> 4 y de 7 -> 10
+
         String motivo = null;
         if( hora == null ){
             return "Falta por configurar la hora";
@@ -64,8 +64,8 @@ public class Hora {
         if( minuto == null ){
             return "Faltan por configurar los minutos";
         }
-        //no se dan los 20 min mínimos de margen para hacer el pedido
-        if(!(hora < 14 && hora >= 12) && !(hora >= 19 && hora < 22)){
+        ///horas válidas: 12 -> 4 y de 7 -> 10
+        if(!(hora < 16 && hora >= 12) && !(hora >= 19 && hora < 22)){
             return "La hora de recogida debe estar en el intervalo 12-16 o 19-22";
         }
         //tiene que haber un tiempo mínimo para hacer el pedido
