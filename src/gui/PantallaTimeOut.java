@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PantallaTimeOut implements Pantalla{
+public class PantallaTimeOut implements Pantalla {
     private JButton sigoAquiButton;
     private JPanel mainPanel;
     //
@@ -14,7 +14,10 @@ public class PantallaTimeOut implements Pantalla{
 
     public PantallaTimeOut(App app) {
         this.app = app;
-        sigoAquiButton.addActionListener(e -> app.volverPantalla());
+        sigoAquiButton.addActionListener(e -> {
+            app.volverPantalla();
+            app.empezarCuentaAtras();
+        });
     }
 
     @Override

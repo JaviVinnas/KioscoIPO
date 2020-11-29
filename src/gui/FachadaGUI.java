@@ -80,6 +80,11 @@ public class FachadaGUI implements GUI{
     }
 
     @Override
+    public void cambiarTamText(JTextArea texto, float tamano) {
+        texto.setFont(texto.getFont().deriveFont(tamano));
+    }
+
+    @Override
     public void empezarCuentaAtras() {
         this.temporizador.empezarCuentaAtras();
     }

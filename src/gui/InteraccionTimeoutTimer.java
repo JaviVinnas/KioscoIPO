@@ -5,30 +5,33 @@ import aplicacion.App;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class InteraccionTimeoutTimer extends Timer {
+public class InteraccionTimeoutTimer {
 
     //tres minutos sin interacción y luego un minuto en la pantalla de advertencia
 
     private final App app;
+    private Timer temporizador;
 
     public InteraccionTimeoutTimer(App app){
-        super(true);
         this.app = app;
+        temporizador = new Timer();
     }
 
     public void empezarCuentaAtras(){
-        this.schedule(new IrAPantallaTimeOut(), 1000*60*3); //3 minutos -> pantalla de advertencia
-        //System.out.println("Iniciado");
+        temporizador.cancel();
+        temporizador = new Timer();
+        temporizador.schedule(new IrAPantallaTimeOut(), 1000*60*3); //3 minutos -> pantalla de advertencia
     }
 
     private void iniciarSegundoTemporizador(){
-        this.schedule(new CancelarPedidoTimeout(), 1000*60); //1 minuto -> pantalla principal con pedido borrado
-        //System.out.println("Iniciado el segundo");
+        temporizador.cancel();
+        temporizador = new Timer();
+        temporizador.schedule(new CancelarPedidoTimeout(), 1000*30); //30 secs -> pantalla principal con pedido borrado
     }
 
     public void borrarCuentaAtras(){
-        this.schedule(new CancelarPedidoTimeout(), 1000*6000);
-        //System.out.println("borrado");
+        temporizador.cancel();
+        temporizador = new Timer();
     }
 
 
@@ -37,7 +40,6 @@ public class InteraccionTimeoutTimer extends Timer {
         @Override
         public void run() {
             app.nuevaPantalla(Pantallas.PANTALLA_TIMEOUT_INTERACCION);
-          //  System.out.println("Suena el primero");
             iniciarSegundoTemporizador();
         }
     }
@@ -46,7 +48,6 @@ public class InteraccionTimeoutTimer extends Timer {
         @Override
         public void run() {
             app.volverPantallaPrincipal();
-            //System.out.println("Suena el segundo");
             borrarCuentaAtras();
         }
     }

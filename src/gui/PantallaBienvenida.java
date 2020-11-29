@@ -48,7 +48,10 @@ public class PantallaBienvenida implements Pantalla {
         inglesButton.addActionListener(new BotonIdiomaClicked(Idioma.Ingles));
         espanolButton.addActionListener(new BotonIdiomaClicked(Idioma.Espanol));
         gallegoButton.addActionListener(new BotonIdiomaClicked(Idioma.Gallego));
-        hacerPedidoButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_PEDIDOS));
+        hacerPedidoButton.addActionListener(e -> {
+            app.nuevaPantalla(Pantallas.PANTALLA_PEDIDOS);
+            app.empezarCuentaAtras();
+        });
     }
 
     private void createUIComponents() {
@@ -89,7 +92,7 @@ public class PantallaBienvenida implements Pantalla {
         if (LocalDateTime.now().getHour() + 1 > 22) {
             errorHorarioLabel.setText("Ya no se aceptan pedidos a partir de la hora actual. Vuelva otro día");
             hacerPedidoButton.setEnabled(false);
-        }else {
+        } else {
             errorHorarioLabel.setText("");
         }
 

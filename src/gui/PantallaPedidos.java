@@ -40,6 +40,7 @@ public class PantallaPedidos implements Pantalla {
     private JTextArea infoMenuInfantilTextArea;
     private JButton anadirMenuAlPedidoButton1;
     private JLabel precioPedidoJLabel;
+    private JLabel menuLabel;
     //variables fuera de la interfaz
     private final App app;
     private ItemCarta itemCartaProvisional;
@@ -63,10 +64,7 @@ public class PantallaPedidos implements Pantalla {
             app.empezarCuentaAtras();
         });
         //tamaños de cosas
-        app.cambiarTamText(primerosLabel, 20);
-        app.cambiarTamText(segundosLabel, 20);
-        app.cambiarTamText(postresLabel, 20);
-        app.cambiarTamText(bebidasLabel, 20);
+
 
         infoElementoCartaTextArea.setEditable(false);
         infoMenuTextArea.setEditable(false);

@@ -54,6 +54,11 @@ public class FachadaAplicacion implements App {
     }
 
     @Override
+    public void cambiarTamText(JTextArea texto, float tamano) {
+        fgui.cambiarTamText(texto,tamano);
+    }
+
+    @Override
     public void empezarCuentaAtras() {
         fgui.empezarCuentaAtras();
     }

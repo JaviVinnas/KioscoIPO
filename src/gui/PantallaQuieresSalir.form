@@ -25,7 +25,8 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="&quot;¿Quieres volver al menú principal? Se borrará tu pedido hasta ahora&quot;"/>
+              <font size="22"/>
+              <text value="¿Quieres volver al menú principal? Se borrará tu pedido hasta ahora"/>
             </properties>
           </component>
         </children>
@@ -38,20 +39,29 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="eb076" class="javax.swing.JButton" binding="siButton">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Si"/>
-            </properties>
-          </component>
           <component id="9f18" class="javax.swing.JButton" binding="noButton">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <background color="-16722389"/>
+              <font size="22"/>
+              <foreground color="-16777216"/>
               <text value="No"/>
+            </properties>
+          </component>
+          <component id="eb076" class="javax.swing.JButton" binding="siButton">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <maximum-size width="500" height="500"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-60928"/>
+              <font size="22"/>
+              <foreground color="-16777216"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Si"/>
             </properties>
           </component>
         </children>

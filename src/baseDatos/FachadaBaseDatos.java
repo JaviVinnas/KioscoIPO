@@ -153,7 +153,7 @@ public class FachadaBaseDatos implements BaseDatos {
         segundoPlato = new SegundoPlato(7.5f, alergenos, "Rape con salsa verde", "Receta casera de pescado");
         carta.put(segundoPlato.getNombre(), segundoPlato);
         alergenos = new ArrayList<>();
-        segundoPlato = new SegundoPlato(8.5f, alergenos, "Cordero al horno", "Asies");
+        segundoPlato = new SegundoPlato(8.5f, alergenos, "Cordero al horno", "Cordero lechal con verduras al horno");
         carta.put(segundoPlato.getNombre(), segundoPlato);
 
         //los extras de la carta
