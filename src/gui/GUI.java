@@ -18,6 +18,10 @@ public interface GUI {
     //cambia el tamaño del texto de estos componentes de la GUI
     void cambiarTamText(JButton boton, float tamano);
     void cambiarTamText(JLabel texto, float tamano);
+    //métodos del temporizador
+    void empezarCuentaAtras();
+    void borrarCuentaAtras();
+
 
 
 }

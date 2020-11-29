@@ -11,11 +11,12 @@ public class PantallaQuieresSalir implements Pantalla{
     private JPanel mainPanel;
     private JButton siButton;
     private JButton noButton;
+    private JLabel tituloQuieresSalir;
 
     public PantallaQuieresSalir(App app){
         this.app =  app;
-        siButton.addActionListener(e -> app.volverPantallaPrincipal());
-        noButton.addActionListener(e -> app.volverPantalla());
+        siButton.addActionListener(e -> {app.volverPantallaPrincipal(); app.borrarCuentaAtras();});
+        noButton.addActionListener(e -> {app.volverPantalla(); app.empezarCuentaAtras();});
     }
 
     @Override

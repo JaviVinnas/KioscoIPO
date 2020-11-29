@@ -27,9 +27,10 @@ public class PantallaResumenPedido implements Pantalla {
     public PantallaResumenPedido(App app) {
         this.app = app;
         app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setTelefono(telefonoLabel).setPaso(pasoLabel,4).build());
-        finalizarRevisiónButton.addActionListener(e -> app.volverPantallaPrincipal());
-        imprimirReciboButton.addActionListener(e -> infoImpresión.setText("Espere a que se imprima el recibo..."));
+        finalizarRevisiónButton.addActionListener(e -> {app.volverPantallaPrincipal(); app.borrarCuentaAtras();});
+        imprimirReciboButton.addActionListener(e -> {infoImpresión.setText("Espere a que se imprima el recibo..."); app.empezarCuentaAtras();});
         enviarButton.addActionListener(e -> {
+            app.empezarCuentaAtras();
             Pattern patronValidoEmail = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
             Matcher matscher = patronValidoEmail.matcher(correoCampo.getText());
             if(matscher.find()){
@@ -39,11 +40,9 @@ public class PantallaResumenPedido implements Pantalla {
             }
 
         });
-        consultaNuestroMenúParaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                app.nuevaPantalla(Pantallas.PANTALLA_MENU_MANANA);
-            }
+        consultaNuestroMenúParaButton.addActionListener(e -> {
+            app.empezarCuentaAtras();
+            app.nuevaPantalla(Pantallas.PANTALLA_MENU_MANANA);
         });
     }
 

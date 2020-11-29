@@ -30,66 +30,57 @@ public class PantallaHoraRecogida implements Pantalla {
         app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setPaso(pasoLabel, 2).setTelefono(telefonoLabel).build());
         app.cambiarTamText(tituloLabel, 35);
         //barra de navegación
-        volverButton.addActionListener(e -> app.volverPantalla());
-        cancelarButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR));
+        volverButton.addActionListener(e -> {
+            app.volverPantalla();
+            app.empezarCuentaAtras();
+        });
+        cancelarButton.addActionListener(e -> {
+            app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR);
+            app.empezarCuentaAtras();
+        });
         infoHorarioTextArea.setText("Recuerda que estamos abiertos para puedas recoger tus pedidos de 12 a 16 horas y de 19 a 22 horas ");
 
-        minutosComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    String item = minutosComboBox.getSelectedItem().toString();
-                    horaProvisional.setMinuto((Integer.parseInt(item)));
-                    errorHoraTextArea.setText(horaProvisional.toString());
-                    String motivoErrorHora = horaProvisional.porQueNoEsValido();
-                    //todo arreglar esto para ponerlo bien mañana con su hora
+        minutosComboBox.addActionListener(e -> {
+            app.empezarCuentaAtras();
+            try {
+                String item = minutosComboBox.getSelectedItem().toString();
+                horaProvisional.setMinuto((Integer.parseInt(item)));
+                errorHoraTextArea.setText(horaProvisional.toString());
+                String motivoErrorHora = horaProvisional.porQueNoEsValido();
+                if (motivoErrorHora == null) {
                     errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
                     confirmarButton.setEnabled(true);
-                    /*
-                    if (motivoErrorHora == null) {
-                        errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
-                        confirmarButton.setEnabled(true);
-                    } else {
-                        errorHoraTextArea.setText(motivoErrorHora);
-                        confirmarButton.setEnabled(false);
-                    }
-
-                     */
-                } catch (NullPointerException ignore) {
-                    ignore.printStackTrace();
+                } else {
+                    errorHoraTextArea.setText(motivoErrorHora);
+                    confirmarButton.setEnabled(false);
                 }
+            } catch (NullPointerException ignore) {
+                ignore.printStackTrace();
             }
         });
 
 
-        horasComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    String item = horasComboBox.getSelectedItem().toString();
-                    horaProvisional.setHora((Integer.parseInt(item)));
-                    System.out.println(horaProvisional);
-                    errorHoraTextArea.setText(horaProvisional.toString());
-                    String motivoErrorHora = horaProvisional.porQueNoEsValido();
-                    //todo arreglar esto para ponerlo bien mañana con su hora
+        horasComboBox.addActionListener(e -> {
+            app.empezarCuentaAtras();
+            try {
+                String item = horasComboBox.getSelectedItem().toString();
+                horaProvisional.setHora((Integer.parseInt(item)));
+                System.out.println(horaProvisional);
+                errorHoraTextArea.setText(horaProvisional.toString());
+                String motivoErrorHora = horaProvisional.porQueNoEsValido();
+                if (motivoErrorHora == null) {
                     errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
                     confirmarButton.setEnabled(true);
-                    /*
-                    if (motivoErrorHora == null) {
-                        errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
-                        confirmarButton.setEnabled(true);
-                    } else {
-                        errorHoraTextArea.setText(motivoErrorHora);
-                        confirmarButton.setEnabled(false);
-                    }
-
-                     */
-                } catch (NullPointerException ignore) {
-                    ignore.printStackTrace();
+                } else {
+                    errorHoraTextArea.setText(motivoErrorHora);
+                    confirmarButton.setEnabled(false);
                 }
+            } catch (NullPointerException ignore) {
+                ignore.printStackTrace();
             }
         });
         confirmarButton.addActionListener(e -> {
+            app.empezarCuentaAtras();
             app.getPedido().setHoraRecogida(horaProvisional);
             app.nuevaPantalla(Pantallas.PANTALLA_ACERCA_TARJETA);
         });

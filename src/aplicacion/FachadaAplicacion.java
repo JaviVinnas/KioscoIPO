@@ -54,6 +54,16 @@ public class FachadaAplicacion implements App {
     }
 
     @Override
+    public void empezarCuentaAtras() {
+        fgui.empezarCuentaAtras();
+    }
+
+    @Override
+    public void borrarCuentaAtras() {
+        fgui.borrarCuentaAtras();
+    }
+
+    @Override
     public String getHoraActual() {
         return fbd.getHoraActual();
     }

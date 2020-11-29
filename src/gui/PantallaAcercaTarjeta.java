@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PantallaAcercaTarjeta implements Pantalla{
+public class PantallaAcercaTarjeta implements Pantalla {
     private JPanel mainPanel;
     private JTextArea infoPedidoTextArea;
     private JButton simularLecturaButton;
@@ -20,17 +20,21 @@ public class PantallaAcercaTarjeta implements Pantalla{
     App app;
 
 
-    public PantallaAcercaTarjeta(App app){
+    public PantallaAcercaTarjeta(App app) {
         this.app = app;
         app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setPaso(pasoLabel, 3).setTelefono(telefonoLabel).build());
 
-        volverButton.addActionListener(e -> app.volverPantalla());
-        cancelarButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR));
-        simularLecturaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                app.nuevaPantalla(Pantallas.PANTALLA_INTRODUCE_PIN);
-            }
+        volverButton.addActionListener(e -> {
+            app.volverPantalla();
+            app.empezarCuentaAtras();
+        });
+        cancelarButton.addActionListener(e -> {
+            app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR);
+            app.empezarCuentaAtras();
+        });
+        simularLecturaButton.addActionListener(e -> {
+            app.nuevaPantalla(Pantallas.PANTALLA_INTRODUCE_PIN);
+            app.empezarCuentaAtras();
         });
     }
 

@@ -18,45 +18,19 @@ public class FachadaGUI implements GUI{
     private final Stack<Pantalla> historialPantallas;
     */
     private Navigator navigator;
+    private InteraccionTimeoutTimer temporizador;
 
     public FachadaGUI(App fa) {
         this.fa = fa;
-        /*
-        this.historialPantallas = new Stack<>();
-        this.ventana = new JFrame("Kiosco");
-        this.ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //para que la ventana aparezca en el centro
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.ventana.setLocation(dim.width/2-this.ventana.getSize().width/2, dim.height/2-this.ventana.getSize().height/2);
-        this.ventana.setResizable(false);
-
-         */
+        this.temporizador = new InteraccionTimeoutTimer(fa);
     }
 
     public void nuevaPantalla( Pantallas pantalla) {
         this.navigator.nuevaPantalla(pantalla);
-        /*
-        this.historialPantallas.push(pantalla);
-        this.ventana.setContentPane(pantalla.getMainPanel());
-        this.ventana.pack();
-        this.ventana.setVisible(true);
-        */
     }
 
     public void volverPantalla() {
         this.navigator.volverPantalla();
-        /*
-        Pantalla pantallaActual = this.historialPantallas.pop();
-        //si esta era la última pantalla
-        if(this.historialPantallas.isEmpty()){
-            //volvemos a meterla (no pasaría nada)
-            this.historialPantallas.push(pantallaActual);
-        }else{
-            //si no lo era asignamos a la ventana la siguiente pantalla en la pila
-            this.ventana.setContentPane(this.historialPantallas.peek().getMainPanel());
-        }
-
-         */
     }
 
     @Override
@@ -105,9 +79,15 @@ public class FachadaGUI implements GUI{
         texto.setFont(texto.getFont().deriveFont(tamano));
     }
 
+    @Override
+    public void empezarCuentaAtras() {
+        this.temporizador.empezarCuentaAtras();
+    }
 
-
-
+    @Override
+    public void borrarCuentaAtras() {
+        temporizador.borrarCuentaAtras();
+    }
 
 
 }

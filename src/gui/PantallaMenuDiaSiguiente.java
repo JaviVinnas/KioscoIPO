@@ -25,7 +25,10 @@ public class PantallaMenuDiaSiguiente implements Pantalla {
     public PantallaMenuDiaSiguiente(App app) {
         this.app = app;
         app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setTelefono(telefonoLabel).build());
-        volverButton.addActionListener(e -> app.volverPantalla());
+        volverButton.addActionListener(e -> {
+            app.volverPantalla();
+            app.empezarCuentaAtras();
+        });
         //listas
         ModeloListaStrings modeloPrimeros = new ModeloListaStrings();
         modeloPrimeros.addElemento("Crema de calabaza con jamón");
@@ -54,27 +57,30 @@ public class PantallaMenuDiaSiguiente implements Pantalla {
         listaPostres.addMouseListener(new ItemMenuListaClicked(listaPostres));
     }
 
-    private class ItemMenuListaClicked extends MouseAdapter{
+    private class ItemMenuListaClicked extends MouseAdapter {
         private final JList<String> lista;
-        public ItemMenuListaClicked(JList<String> lista){
+
+        public ItemMenuListaClicked(JList<String> lista) {
             this.lista = lista;
         }
+
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e);
+            app.empezarCuentaAtras();
             String idItemMenu = lista.getModel().getElementAt(lista.getSelectedIndex());
             ItemCarta itemCartaProvisional = app.getItemCartabyNombre(idItemMenu);
             infoItemMenu.setText(itemCartaProvisional.toString());
-            if(listaPrimeros != lista){
+            if (listaPrimeros != lista) {
                 listaPrimeros.clearSelection();
             }
-            if(listaSegundos != lista){
+            if (listaSegundos != lista) {
                 listaSegundos.clearSelection();
             }
-            if(listaPostres != lista){
+            if (listaPostres != lista) {
                 listaPostres.clearSelection();
             }
-            if(listaBebidas != lista){
+            if (listaBebidas != lista) {
                 listaBebidas.clearSelection();
             }
 

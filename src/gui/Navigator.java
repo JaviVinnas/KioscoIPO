@@ -33,6 +33,7 @@ public class Navigator {
         this.pantallasDisponibles.put(Pantallas.PANTALLA_INTRODUCE_PIN, new PantallaIntroducePin(this.app));
         this.pantallasDisponibles.put(Pantallas.PANTALLA_RESUMEN_PEDIDO, new PantallaResumenPedido(this.app));
         this.pantallasDisponibles.put(Pantallas.PANTALLA_MENU_MANANA, new PantallaMenuDiaSiguiente(this.app));
+        this.pantallasDisponibles.put(Pantallas.PANTALLA_TIMEOUT_INTERACCION, new PantallaTimeOut(this.app));
     }
 
     //mete el jpanel principal del tope de la pila como ventana actual iniciándolo

@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PantallaIntroducePin implements Pantalla{
+public class PantallaIntroducePin implements Pantalla {
     private JPanel panel1;
     private JTextField pinField;
     private JButton borrarButton;
@@ -30,12 +30,21 @@ public class PantallaIntroducePin implements Pantalla{
     //otros
     private App app;
 
-    public PantallaIntroducePin(App app){
+    public PantallaIntroducePin(App app) {
         this.app = app;
         app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setPaso(pasoLabel, 3).setTelefono(telefonoLabel).build());
-        volverButton.addActionListener(e -> app.volverPantalla());
-        cancelarButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR));
-        confirmarButton.addActionListener(e -> app.nuevaPantalla(Pantallas.PANTALLA_RESUMEN_PEDIDO));
+        volverButton.addActionListener(e -> {
+            app.volverPantalla();
+            app.empezarCuentaAtras();
+        });
+        cancelarButton.addActionListener(e -> {
+            app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR);
+            app.empezarCuentaAtras();
+        });
+        confirmarButton.addActionListener(e -> {
+            app.nuevaPantalla(Pantallas.PANTALLA_RESUMEN_PEDIDO);
+            app.empezarCuentaAtras();
+        });
 
         unoBoton.addActionListener(new BotonDigitoClicked());
         dosBoton.addActionListener(new BotonDigitoClicked());
@@ -48,8 +57,9 @@ public class PantallaIntroducePin implements Pantalla{
         nueveBoton.addActionListener(new BotonDigitoClicked());
         ceroBoton.addActionListener(new BotonDigitoClicked());
         borrarButton.addActionListener(e -> {
-            if(pinField.getText().length()>0){
-                pinField.setText(pinField.getText().substring(0, pinField.getText().length()-1));
+            app.empezarCuentaAtras();
+            if (pinField.getText().length() > 0) {
+                pinField.setText(pinField.getText().substring(0, pinField.getText().length() - 1));
             }
             confirmarButton.setEnabled(pinField.getText().length() == 4);
         });
@@ -57,10 +67,12 @@ public class PantallaIntroducePin implements Pantalla{
 
     private class BotonDigitoClicked implements ActionListener {
 
-        public BotonDigitoClicked(){}
+        public BotonDigitoClicked() {
+        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            app.empezarCuentaAtras();
             pinField.setText(pinField.getText() + '*');
             confirmarButton.setEnabled(pinField.getText().length() == 4);
         }
