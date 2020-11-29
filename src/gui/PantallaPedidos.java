@@ -310,6 +310,10 @@ public class PantallaPedidos implements Pantalla {
         confirmarButton.setEnabled(!app.getPedido().isEmpty());
         //
 
+        itemCartaProvisional = null;
+        itemCartaFueraDeListaProvisional = null;
+        menuProvisional = null;
+
 
     }
 }
