@@ -308,8 +308,8 @@ public class PantallaPedidos implements Pantalla {
         borrarTodosButton.setEnabled(false);
         setListaPedido(listaItemsPedidoJList);
         confirmarButton.setEnabled(!app.getPedido().isEmpty());
+        infoItemPedidoTextArea.setText("");
         //
-
         itemCartaProvisional = null;
         itemCartaFueraDeListaProvisional = null;
         menuProvisional = null;

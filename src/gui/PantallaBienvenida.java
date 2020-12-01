@@ -95,6 +95,5 @@ public class PantallaBienvenida implements Pantalla {
         } else {
             errorHorarioLabel.setText("");
         }
-
     }
 }

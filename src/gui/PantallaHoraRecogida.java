@@ -48,6 +48,7 @@ public class PantallaHoraRecogida implements Pantalla {
                 errorHoraTextArea.setText(horaProvisional.toString());
                 String motivoErrorHora = horaProvisional.porQueNoEsValido();
 
+
                 if (motivoErrorHora == null) {
                     errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
                     confirmarButton.setEnabled(true);
@@ -55,6 +56,7 @@ public class PantallaHoraRecogida implements Pantalla {
                     errorHoraTextArea.setText(motivoErrorHora);
                     confirmarButton.setEnabled(false);
                 }
+
 
             } catch (NullPointerException ignore) {
                 ignore.printStackTrace();
@@ -71,6 +73,7 @@ public class PantallaHoraRecogida implements Pantalla {
                 errorHoraTextArea.setText(horaProvisional.toString());
                 String motivoErrorHora = horaProvisional.porQueNoEsValido();
 
+
                 if (motivoErrorHora == null) {
                     errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
                     confirmarButton.setEnabled(true);
@@ -78,6 +81,7 @@ public class PantallaHoraRecogida implements Pantalla {
                     errorHoraTextArea.setText(motivoErrorHora);
                     confirmarButton.setEnabled(false);
                 }
+
 
             } catch (NullPointerException ignore) {
                 ignore.printStackTrace();
