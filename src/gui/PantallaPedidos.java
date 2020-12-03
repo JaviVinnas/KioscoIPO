@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class PantallaPedidos implements Pantalla {
     private JPanel mainPanel;
-    private JButton volverButton;
     private JButton confirmarButton;
     private JButton cancelarButton;
     private JLabel pasoLabel;
@@ -54,7 +53,6 @@ public class PantallaPedidos implements Pantalla {
         infoMenuInfantilTextArea.setText(menuInfantil.toString());
         app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setPaso(pasoLabel, 1).setTelefono(telefonoLabel).build());
         //barra de navegación
-        volverButton.addActionListener(e -> app.volverPantalla());
         cancelarButton.addActionListener(e -> {
             app.nuevaPantalla(Pantallas.PANTALLA_QUIERES_SALIR);
             app.empezarCuentaAtras();
@@ -309,6 +307,7 @@ public class PantallaPedidos implements Pantalla {
         setListaPedido(listaItemsPedidoJList);
         confirmarButton.setEnabled(!app.getPedido().isEmpty());
         infoItemPedidoTextArea.setText("");
+        infoItemFueraDelMenu.setText("");
         //
         itemCartaProvisional = null;
         itemCartaFueraDeListaProvisional = null;

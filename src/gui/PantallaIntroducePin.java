@@ -27,6 +27,8 @@ public class PantallaIntroducePin implements Pantalla {
     private JLabel pasoLabel;
     private JLabel telefonoLabel;
     private JLabel horaLabel;
+    private JLabel instruccionesPinJLabel;
+    private JButton BORRARTODOButton;
     //otros
     private App app;
 
@@ -61,8 +63,14 @@ public class PantallaIntroducePin implements Pantalla {
             app.empezarCuentaAtras();
             if (pinField.getText().length() > 0) {
                 pinField.setText(pinField.getText().substring(0, pinField.getText().length() - 1));
+                instruccionesPinJLabel.setText("Introduce los 4 dígitos del pin");
             }
-            confirmarButton.setEnabled(pinField.getText().length() == 4);
+
+        });
+        BORRARTODOButton.addActionListener(e -> {
+            app.empezarCuentaAtras();
+            pinField.setText("");
+            instruccionesPinJLabel.setText("Introduce los 4 dígitos del pin");
         });
     }
 
@@ -74,8 +82,15 @@ public class PantallaIntroducePin implements Pantalla {
         @Override
         public void actionPerformed(ActionEvent e) {
             app.empezarCuentaAtras();
-            pinField.setText(pinField.getText() + '*');
-            confirmarButton.setEnabled(pinField.getText().length() == 4);
+            if (pinField.getText().length() < 4) {
+                pinField.setText(pinField.getText() + '*');
+                if(pinField.getText().length() == 4){
+                    confirmarButton.setEnabled(true);
+                    instruccionesPinJLabel.setText("PIN de longitud correcta");
+                }
+            } else {
+                instruccionesPinJLabel.setText("El código PIN tiene 4 cifras como máximo (no se pueden introducir más números)");
+            }
         }
     }
 
@@ -95,5 +110,6 @@ public class PantallaIntroducePin implements Pantalla {
         infoPedido.setText(app.getPedido().toString());
         pinField.setText("");
         confirmarButton.setEnabled(false);
+        instruccionesPinJLabel.setText("Introduce los 4 dígitos del pin");
     }
 }
