@@ -102,7 +102,7 @@
         </constraints>
         <properties>
           <defaultCapable value="false"/>
-          <icon value="gui/bEspana.png"/>
+          <icon value="gui/bEspana.jpg"/>
           <text value=""/>
         </properties>
       </component>
