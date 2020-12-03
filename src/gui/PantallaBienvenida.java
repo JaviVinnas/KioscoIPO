@@ -54,12 +54,6 @@ public class PantallaBienvenida implements Pantalla {
         });
     }
 
-    private void createUIComponents() {
-        //banderas
-        gallegoButton = app.generarImagenJButton("bandera_galicia.png", 70, 186);
-        espanolButton = app.generarImagenJButton("bandera_espana.jpg", 70, 186);
-        inglesButton = app.generarImagenJButton("bandera_inglaterra.png", 70, 186);
-    }
 
     private class BotonIdiomaClicked implements ActionListener {
         private final Idioma idioma;

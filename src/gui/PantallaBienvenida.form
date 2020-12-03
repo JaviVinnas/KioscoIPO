@@ -79,7 +79,7 @@
           <text value="TELEFONO"/>
         </properties>
       </component>
-      <component id="e036e" class="javax.swing.JButton" binding="inglesButton" custom-create="true">
+      <component id="e036e" class="javax.swing.JButton" binding="inglesButton">
         <constraints>
           <grid row="5" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="186" height="70"/>
@@ -88,12 +88,13 @@
         <properties>
           <defaultCapable value="false"/>
           <enabled value="true"/>
-          <iconTextGap value="4"/>
+          <icon value="gui/bUK.png"/>
+          <iconTextGap value="2"/>
           <selected value="false"/>
           <text value=""/>
         </properties>
       </component>
-      <component id="5ca8e" class="javax.swing.JButton" binding="espanolButton" custom-create="true">
+      <component id="5ca8e" class="javax.swing.JButton" binding="espanolButton">
         <constraints>
           <grid row="5" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="186" height="70"/>
@@ -101,10 +102,11 @@
         </constraints>
         <properties>
           <defaultCapable value="false"/>
+          <icon value="gui/bEspana.png"/>
           <text value=""/>
         </properties>
       </component>
-      <component id="3c14e" class="javax.swing.JButton" binding="gallegoButton" custom-create="true">
+      <component id="3c14e" class="javax.swing.JButton" binding="gallegoButton">
         <constraints>
           <grid row="5" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="186" height="70"/>
@@ -113,6 +115,7 @@
         <properties>
           <defaultCapable value="false"/>
           <horizontalTextPosition value="0"/>
+          <icon value="gui/bGalicia.jpg"/>
           <inheritsPopupMenu value="false"/>
           <text value=""/>
         </properties>
