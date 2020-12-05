@@ -47,8 +47,6 @@ public class PantallaHoraRecogida implements Pantalla {
                 horaProvisional.setMinuto((Integer.parseInt(item)));
                 errorHoraTextArea.setText(horaProvisional.toString());
                 String motivoErrorHora = horaProvisional.porQueNoEsValido();
-
-
                 if (motivoErrorHora == null) {
                     errorHoraTextArea.setText("Hora de recogida válida (" + horaProvisional.toString() + ")");
                     confirmarButton.setEnabled(true);
@@ -108,6 +106,8 @@ public class PantallaHoraRecogida implements Pantalla {
     public void init() {
         app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setHora(horaLabel).build());
         infoPedidoTextArea.setText(app.getPedido().toString());
+        errorHoraTextArea.setText("Selecciona una hora");
+        confirmarButton.setEnabled(false);
     }
 
 }
