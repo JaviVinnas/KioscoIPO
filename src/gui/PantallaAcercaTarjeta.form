@@ -149,7 +149,7 @@
         </constraints>
         <properties>
           <font size="24"/>
-          <text value="Acerca tu tarjeta de crédito al sensor lateral derecho del quiosko"/>
+          <text value="Acerca tu tarjeta de crédito al sensor lateral derecho del kiosco"/>
         </properties>
       </component>
     </children>
