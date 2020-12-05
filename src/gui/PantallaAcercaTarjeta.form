@@ -135,6 +135,7 @@
               <component id="7fc98" class="javax.swing.JTextArea" binding="infoPedidoTextArea">
                 <constraints/>
                 <properties>
+                  <editable value="false"/>
                   <font size="16"/>
                 </properties>
               </component>
@@ -148,7 +149,7 @@
         </constraints>
         <properties>
           <font size="24"/>
-          <text value="Acerca tu tarjeta de crédito al sensor lateral derecho del quiosko"/>
+          <text value="Acerca tu tarjeta de crédito al sensor lateral derecho del kiosco"/>
         </properties>
       </component>
     </children>

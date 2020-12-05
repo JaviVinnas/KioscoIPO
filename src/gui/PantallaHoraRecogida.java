@@ -108,6 +108,8 @@ public class PantallaHoraRecogida implements Pantalla {
     public void init() {
         app.initComponentesPantalla(new ComponentesConstantesPantalla.ComponentesConstantesPantallaBuilder(app).setHora(horaLabel).build());
         infoPedidoTextArea.setText(app.getPedido().toString());
+        errorHoraTextArea.setText("Introduce la hora de recogida");
+        confirmarButton.setEnabled(false);
     }
 
 }

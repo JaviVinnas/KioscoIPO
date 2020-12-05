@@ -16,7 +16,7 @@ public class Navigator {
 
     public Navigator(App app){
         this.app = app;
-        this.ventana = new JFrame("Kiosko");
+        this.ventana = new JFrame("Kiosco");
         this.ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //para que la ventana aparezca en el centro
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
