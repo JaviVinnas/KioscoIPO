@@ -148,6 +148,7 @@
                   <component id="868bc" class="javax.swing.JTextArea" binding="infoPedido">
                     <constraints/>
                     <properties>
+                      <editable value="false"/>
                       <font size="18"/>
                     </properties>
                   </component>

@@ -135,6 +135,7 @@
               <component id="7fc98" class="javax.swing.JTextArea" binding="infoPedidoTextArea">
                 <constraints/>
                 <properties>
+                  <editable value="false"/>
                   <font size="16"/>
                 </properties>
               </component>
